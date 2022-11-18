@@ -1,0 +1,12 @@
+<%- if controller_name != 'sessions' %>
+  <!--link_to"Log in"をこちらに書き換えた-->
+  <%= link_to "こちら", new_session_path(resource_name) %>
+<% end %>
+
+<%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+　<!--link_to"Sign in"をこちらに書き換えた-->
+  <%= link_to "こちら", new_registration_path(resource_name) %>
+<% end %>
+
+
+<!--上記2つ以外の記述は今回不要のため削除-->

@@ -1,0 +1,68 @@
+<h1>Public::Customers#show</h1>
+
+<h2>マイページ</h2>
+
+<h3>登録情報　※あとでリンク先つける</h3><%#= link_to '編集する', リンク先 %>
+
+<table border="1" style="border-collapse: collapse">
+  <tr>
+    <th>
+      <p>氏名</p>
+    </th>
+    <td>
+      <%= @customer.last_name %>
+      <%= @customer.first_name %>
+    </td>
+  </tr>
+
+  <tr>
+    <th>
+      <p>カナ</p>
+    </th>
+    <td>
+    <%= @customer.last_name_kana %>
+    <%= @customer.first_name_kana %>
+    </td>
+  </tr>
+
+  <tr>
+    <th>
+      <p>郵便番号</p>
+    </th>
+    <td>
+      <%= @customer.postal_code %>
+    </td>
+  </tr>
+
+  <tr>
+    <th>
+      <p>住所</p>
+    </th>
+    <td>
+      <%= @customer.address %>
+    </td>
+  </tr>
+
+  <tr>
+    <th>
+      <p>電話番号</p>
+    </th>
+    <td>
+      <%= @customer.telephone_number %>
+    </td>
+  </tr>
+
+  <tr>
+    <th>
+      <p>メールアドレス</p>
+    </th>
+    <td>
+      <%= @customer.email %>
+    </td>
+  </tr>
+
+</table>
+
+
+<h3>配送先　※あとでリンク先</h3><%#= link_to '一覧を見る', リンク先 %>
+<h3>注文履歴　※あとでリンク先</h3><%#= link_to '一覧を見る', リンク先 %>

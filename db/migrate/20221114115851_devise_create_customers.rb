@@ -33,9 +33,10 @@ class DeviseCreateCustomers < ActiveRecord::Migration[6.1]
       # t.datetime :locked_at
 
       #自分で追記した部分
-      #t.integer :id, null: false この部分はエラーが出るため削除
+      #t.integer :id, null: false
       # t.datetime :create_at, null: false
       # t.datetime :updated_at, null: false（Qこれはどこをみたら重複しているのが確認できる？）
+      #注意点：id, create_id,update_idの3つのカラムは、自動で作成されるため、マイグレーションファイルを編集する際に追加しないように気をつける
       t.string :last_name, null: false
       t.string :first_name, null: false
       t.string :last_name_kana, null: false

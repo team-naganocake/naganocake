@@ -2,4 +2,22 @@
 
 <h2>会員情報編集</h2>
 
-<p>氏名</p>
+<!--このurlを記載するのが正式な書き方。public/customers#updateのPathを書く-->
+<%= form_with model: @customer, url: customers_information_path, method: :patch do |f| %>
+<!--label forに同じ名前は付けられない。-->
+<!--ここでlabel forを使って関連付けることによって「氏名」や「フリガナ」をクリックすると枠が反応するようになる。ラジオボタンと同じようなシステム-->
+  <!--label for(htmlの書き方）でもいいけど、railsの書き方はf.labelになる。コンパイアー(記述変換)されて最終的にはlabel forになるのでどっちでもいい-->
+  <label for="inputName">氏名</label>
+  <%= f.text_field:last_name, autofocus: true, id:"inputName" %>
+  <%= f.text_field:first_name, autofocus: true, id:"inputName" %><br>
+  <label for="inputNamekana">フリガナ</label>
+  <%= f.text_field:last_name_kana, autofocus: true, id:"inputNamekana" %>
+  <%= f.text_field:first_name_kana, autofocus: true, id:"inputNamekana" %><br>
+  <label for="postal_code">郵便番号</label>
+  <%= f.text_field:postal_code, autofocus: true, id:"postal_code" %><br>
+  <label for="telephone_number">電話番号</label>
+  <%= f.text_field:telephone_number, autofocus: true, id:"telephone_number" %><br>
+  <label for="email">メールアドレス</label>
+  <%= f.text_field:email, autofocus: true, id:"email" %>
+
+<% end %>

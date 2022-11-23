@@ -1,5 +1,18 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    # get 'customers/index'
+    # get 'customers/show'
+    # get 'customers/edit'
+
+    #【admin/customersコントローラー】
+    get 'customers' => 'customers#index'
+    get 'customers/:id' => 'customers#show'
+    get 'customers/:id/edit' => 'customers#edit'
+    patch 'customers/:id'=> 'customers#update'
+  end
+
+
   # namespace :public doと記述されていたのをscope module:を使うことによって、URLに"public"が表示されないようにした。
   scope module: :public do
     # get 'customers/show'

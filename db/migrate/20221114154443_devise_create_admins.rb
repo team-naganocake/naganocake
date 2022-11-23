@@ -33,8 +33,9 @@ class DeviseCreateAdmins < ActiveRecord::Migration[6.1]
       # t.datetime :locked_at
 
       #自分で追記した部分
-      # t.string :email, null: false →既に定義済みのためコメントアウト
+      # t.string :email, null: false →既に定義済みのためコメントアウト(このページの上部確認)
       # t.string :encrypted_password, null: false
+      #注意点：id, create_id,update_idの3つのカラムは、自動で作成されるため、マイグレーションファイルを編集する際に追加しないように気をつける
 
 
       t.timestamps null: false

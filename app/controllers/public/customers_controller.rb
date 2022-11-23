@@ -7,7 +7,7 @@ class Public::CustomersController < ApplicationController
   def edit
     @customer = current_customer
   end
-  
+
   def update
     @customer = current_customer
     if @customer.update(customer_params)
@@ -17,7 +17,18 @@ class Public::CustomersController < ApplicationController
     end
   end
 
+  #退会確認画面用のアクション
   def unsubscribe
+    @customer = current_customer
+  end
+
+  #退会のアクション
+  def withdraw
+    @customer = current_customer
+    @customer.update(is_deleted: true) #ここでis_deletedカラムの値をtrue(退会済）に更新
+    reset_session #この記述で現在のログイン状況をリセットする（destroyではない）
+    # flash[:notice] = "退会が完了しました。他に記載が必要だと思う。とりあえず後回し"
+    redirect_to root_path #処理完了後ルートパスへ遷移
   end
 
   #privateは記述をしたコントローラ内でしか参照できない

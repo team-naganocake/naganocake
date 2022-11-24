@@ -60,3 +60,6 @@ gem 'devise'
 
 #You don't have net-smtp installed in your application. Please add it to your Gemfile and run bundle installというエラーが出たため記述
 gem 'net-smtp'
+
+#ページネーションのために記述
+gem 'kaminari','~> 1.2.1'

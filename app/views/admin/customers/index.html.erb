@@ -25,7 +25,12 @@
     <%= customer.email %>
     </td>
     <td>
-    <%= customer.is_deleted %>
+    <% if customer.is_deleted %>
+    退会
+    <% else %>
+    有効
+    <% end %>
+    <!--[true：'退会', false:'有効']とか色々試してみたが×××これでもうまくやればかけるけど習ったif文で書くとこうなる-->
     </td>
   </tr>
   <% end %>

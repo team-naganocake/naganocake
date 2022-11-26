@@ -8,8 +8,9 @@ Rails.application.routes.draw do
     #【admin/customersコントローラー】
     get 'customers' => 'customers#index'
     get 'customers/:id' => 'customers#show'
-    get 'customers/:id/edit' => 'customers#edit'
+    get 'customers/:id/edit' => 'customers#edit', as:'edit_adim_cutomer'
     patch 'customers/:id'=> 'customers#update'
+    # resources :customers
   end
 
 

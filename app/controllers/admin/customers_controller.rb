@@ -5,9 +5,18 @@ class Admin::CustomersController < ApplicationController
   end
 
   def show
+    @customer = Customer.find(params[:id])
+    #ここではレコードを1件だけ取得するので、インスタンス変数名は単数形の「@customer」にした。
   end
 
   def edit
+    @customer = Customer.find(params[:id])
+  end
+
+  def update
+    @customer = Customer.find(params[:id])
+    @customer.update(customer_params)
+    redirect_to admin_path(@customer.id)#会員詳細へ
   end
 
 

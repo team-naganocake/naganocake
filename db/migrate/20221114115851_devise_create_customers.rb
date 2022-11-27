@@ -55,8 +55,8 @@ class DeviseCreateCustomers < ActiveRecord::Migration[6.1]
     # add_index :customers, :confirmation_token,   unique: true
     # add_index :customers, :unlock_token,         unique: true
 
-    #自分で追記
-    add_index :customers, :id
+    #自分でカラム追加のため追記してみたけど、この記述はいらない？？
+    #add_index :customers, :id
 
 
   end

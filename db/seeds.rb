@@ -6,8 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-#ネットで調べたらAdminのアカウント作成方法がのっていたが、最初のログイン時は特にこのような記述はしていなかった。
-#これは書いた方がいいのか？これは必要！！！これ書かないとログインできない。
+#管理者情報を登録するために、この記述は必ず必要！！！これ書かないとログインできない。
 Admin.create!(
     email: 'admin@test.com',
     password: 'admintest',

@@ -1,10 +1,18 @@
 Rails.application.routes.draw do
+#同じpathでメソッドが同じ場合は、名前付きルートにするか、resourcesで書くようにする
+#顧客側のURLで:idがつかないようにしているのは他人の画面に簡単にログインできないようにするため。他に制限をかける方法もあるが…
 
   namespace :admin do
-    # get 'customers/index'
-    # get 'customers/show'
-    # get 'customers/edit'
+    #【admin/itemsコントローラー】
+    get 'items' => 'items#index'
+    get 'items/new' => 'items#new'
+    post 'items' => 'items#create'
+    get 'items/:id' => 'items#show'
+    get 'items/:id/edit' => 'items#edit'
+    patch 'items/:id' => 'items#update'
+  end
 
+  namespace :admin do
     #【admin/customersコントローラー】
     get 'customers' => 'customers#index'
     get 'customers/:id' => 'customers#show'
@@ -13,13 +21,8 @@ Rails.application.routes.draw do
     # resources :customers
   end
 
-
   # namespace :public doと記述されていたのをscope module:を使うことによって、URLに"public"が表示されないようにした。
   scope module: :public do
-    # get 'customers/show'
-    # get 'customers/edit'
-    # get 'customers/unsubscribe'
-
     #【public/customersコントローラー】
     get 'customers/my_page' => 'customers#show'
     get 'customers/information/edit' => 'customers#edit'

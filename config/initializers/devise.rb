@@ -309,6 +309,7 @@ Devise.setup do |config|
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
 
-  #管理者のログアウト画面でルートエラーが出たため試しに記載してみた
-  config.sign_out_via = :get
+  #管理者のログアウト画面でルートエラーが出たため試しに記載してみた。この記述みたことない
+  #この記事必要ない
+  #config.sign_out_via = :get
 end

@@ -310,6 +310,6 @@ Devise.setup do |config|
   # config.sign_in_after_change_password = true
 
   #管理者のログアウト画面でルートエラーが出たため試しに記載してみた。この記述みたことない
-  #この記事必要ない
+  #この記述必要ない
   #config.sign_out_via = :get
 end

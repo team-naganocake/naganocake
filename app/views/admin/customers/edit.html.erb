@@ -3,6 +3,7 @@
 <h2><%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集</h2>
 
 <%= form_with model: @customer, url: admin_path, method: :patch do |f| %>
+<!--urlは admin/items#updateのpathを記述(メンター確認済）-->
 
   会員ID<%= @customer.id %>
   <label for="inputName">氏名</label>

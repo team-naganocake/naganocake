@@ -4,12 +4,15 @@ Rails.application.routes.draw do
 
   namespace :admin do
     #【admin/itemsコントローラー】
-    get 'items' => 'items#index'
-    get 'items/new' => 'items#new'
-    post 'items' => 'items#create'
-    get 'items/:id' => 'items#show'
-    get 'items/:id/edit' => 'items#edit'
-    patch 'items/:id' => 'items#update'
+    # get 'items' => 'items#index'
+    # get 'items/new' => 'items#new'
+    # post 'items' => 'items#create'
+    # get 'items/:id' => 'items#show'
+    # get 'items/:id/edit' => 'items#edit'
+    # patch 'items/:id' => 'items#update'
+
+    resources :items, only:[:index, :new, :create, :show, :edit, :update]
+    #ルーティングを書くときは、まずresourcesで書く。そして、＄rails routesで確認し、指定されたURLだけ個別に書いた方がエラーが出にくい。
   end
 
   namespace :admin do

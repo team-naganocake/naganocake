@@ -77,4 +77,7 @@ Rails.application.configure do
   # 複数のホストがRailsアプリケーションにアクセスできるようにする
   config.hosts.clear
 
+  #ActiveStorage導入時、何かのコードのエラーの回避のために追記
+  config.active_job.queue_adapter = :inline
+
 end

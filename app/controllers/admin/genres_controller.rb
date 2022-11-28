@@ -5,6 +5,7 @@ class Admin::GenresController < ApplicationController
     @genre = Genre.new(genre_params)
     @genre.save
     redirect_to admin_genres_path#同じ画面のまま
+    #saveしなかった時の設定はまだしていない
   end
 
   def index
@@ -12,9 +13,13 @@ class Admin::GenresController < ApplicationController
   end
 
   def edit
+    @genre = Genre.find(params[:id])
   end
 
   def update
+    @genre = Genre.find(params[:id])
+    @genre.update(genre_params)
+    redirect_to admin_genres_path#一覧に戻る
   end
 
   #privateは記述をしたコントローラ内でしか参照できない

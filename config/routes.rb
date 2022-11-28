@@ -1,16 +1,11 @@
 Rails.application.routes.draw do
-#同じpathでメソッドが同じ場合は、名前付きルートにするか、resourcesで書くようにする
-#顧客側のURLで:idがつかないようにしているのは他人の画面に簡単にログインできないようにするため。他に制限をかける方法もあるが…
+  namespace :admin do
+    #【admin/genresコントローラー】
+    resources :genres, only:[:index, :create, :edit, :update]
+  end
 
   namespace :admin do
     #【admin/itemsコントローラー】
-    # get 'items' => 'items#index'
-    # get 'items/new' => 'items#new'
-    # post 'items' => 'items#create'
-    # get 'items/:id' => 'items#show'
-    # get 'items/:id/edit' => 'items#edit'
-    # patch 'items/:id' => 'items#update'
-
     resources :items, only:[:index, :new, :create, :show, :edit, :update]
     #ルーティングを書くときは、まずresourcesで書く。そして、＄rails routesで確認し、指定されたURLだけ個別に書いた方がエラーが出にくい。
   end
@@ -56,6 +51,9 @@ Rails.application.routes.draw do
 
   root to: "public/homes#top"
   get '/about' => "public/homes#about", as:'about'
+
+  #同じpathでメソッドが同じ場合は、名前付きルートにするか、resourcesで書くようにする
+  #顧客側のURLで:idがつかないようにしているのは他人の画面に簡単にログインできないようにするため。他に制限をかける方法もあるが…
 
 
 end

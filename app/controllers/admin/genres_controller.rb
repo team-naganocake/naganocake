@@ -22,6 +22,12 @@ class Admin::GenresController < ApplicationController
     redirect_to admin_genres_path#一覧に戻る
   end
 
+  # def destroy
+  #   @genre = Genre.find(params[:id])
+  #   @genre.destroy
+  #   redirect_to admin_genres_path#一覧に戻る
+  # end
+
   #privateは記述をしたコントローラ内でしか参照できない
   #protectedは呼び出された他のコントローラーからも参照することができる
   protected

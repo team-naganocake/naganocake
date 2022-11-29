@@ -1,7 +1,8 @@
 class Admin::ItemsController < ApplicationController
 
   def index
-    #11/29はここから作成する！Viewも作成して商品一覧がちゃんと表示されるか確認する
+    @items = Item.all
+    @genres = Genre.all
   end
 
   def new
@@ -32,4 +33,5 @@ class Admin::ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:genre_id, :name, :introduction, :price, :is_active, :image)
   end
+
 end

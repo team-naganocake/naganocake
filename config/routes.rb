@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   namespace :admin do
     #【admin/genresコントローラー】
-    resources :genres, only:[:index, :create, :edit, :update]
+    resources :genres, only:[:index, :create, :edit, :update, :destroy]
   end
 
   namespace :admin do

@@ -9,13 +9,14 @@
     <label>商品画像</label>
     <%= f.file_field :image, accept: "image/*" %><br>
     <label>商品名</label>
-    <%= f.text_field :name %><br>
+    <%= f.text_field :name, placeholder: "商品名" %><br>
     <label>商品説明</label>
-    <%= f.text_area :introduction %><br>
+    <%= f.text_area :introduction, placeholder: "ここに説明文を記述します" %><br>
     <label>ジャンル</label>
     <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name) %><br>
+    <!--レイアウト編集時、プルダウンの表示かえる-->
     <label>税抜価格</label>
-    <%= f.text_field :price %><br>
+    <%= f.text_field :price, placeholder: "1000" %><br>
     <!--カンマをつけたりするのは後回し-->
     <label>販売ステータス</label>
     <label><%= f.radio_button :is_active, "true" %>販売中</label>

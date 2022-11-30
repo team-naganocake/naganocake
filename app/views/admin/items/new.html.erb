@@ -13,7 +13,7 @@
     <label>商品説明</label>
     <%= f.text_area :introduction %><br>
     <label>ジャンル</label>
-    <%= f.select :genre_id, options_from_collection_for_select(@genres, :id, :name) %><br>
+    <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name) %><br>
     <label>税抜価格</label>
     <%= f.text_field :price %><br>
     <!--カンマをつけたりするのは後回し-->

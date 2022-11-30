@@ -1,10 +1,5 @@
 class Admin::ItemsController < ApplicationController
 
-  def index
-    @items = Item.all
-    @genres = Genre.all
-  end
-
   def new
     @item = Item.new
     @genres = Genre.all
@@ -18,12 +13,27 @@ class Admin::ItemsController < ApplicationController
     #一旦、ジャンル作成してから商品登録に再挑戦
   end
 
+   def index
+    @items = Item.all
+    @genres = Genre.all
+    @items = Item.page(params[:page])#ページネーション
+  end
+
   def show
     @item = Item.find(params[:id])
   end
 
   def edit
     @item = Item.find(params[:id])
+  end
+
+  def update
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      redirect_to admin_items_path(@item.id)#詳細ページへ
+    else
+      render :edit
+    end
   end
 
 

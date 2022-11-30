@@ -21,7 +21,7 @@
     <th>
       税込価格<br>(税抜価格）
     </th>
-    <td><%= @item.price*1.1 %>  (<%= @item.price %>)円</td>
+    <td><%= (@item.price*1.1).floor %>  (<%= @item.price %>)円</td>
     <!--ここの数字うまく表示できない！後で編集する！！！ .floorで小数点以下切り捨て-->
   </tr>
   <tr>

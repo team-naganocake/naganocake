@@ -2,7 +2,8 @@
 
 <h2>マイページ</h2>
 
-<h3>登録情報　※あとでリンク先つける</h3><%#= link_to '編集する', リンク先 %>
+<h3>登録情報</h3>
+<%= link_to "編集する", customers_information_edit_path(@customer.id) %>
 
 <table border="1" style="border-collapse: collapse">
   <tr>

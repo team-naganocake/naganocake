@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   namespace :admin do
     #【admin/genresコントローラー】
     resources :genres, only:[:index, :create, :edit, :update, :destroy]
@@ -19,6 +20,7 @@ Rails.application.routes.draw do
     # resources :customers
   end
 
+
   # namespace :public doと記述されていたのをscope module:を使うことによって、URLに"public"が表示されないようにした。
   scope module: :public do
     #【public/customersコントローラー】
@@ -29,6 +31,12 @@ Rails.application.routes.draw do
     patch 'customers/withdraw' => 'customers#withdraw'
   end
 
+  scope module: :public do
+    # get 'addresses/index'
+    # get 'addresses/edit'
+    #【public/addressesコントローラー】
+    resources :addresses, only:[:index, :edit, :create, :update, :destroy]
+  end
 
 
 

@@ -5,8 +5,7 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   #public/addressesコントローラーでのアソシエーション設定
-  has_many_addresses, dependent: :destroy
-
+  # has_many :addresses, dependent: :destroy→これ書くとadress#indexで新規投稿できなくなる
 
 
 

@@ -1,2 +1,34 @@
 <h1>Public::Addresses#index</h1>
-<p>Find me in app/views/public/addresses/index.html.erb</p>
+
+<h2>配送先登録/一覧</h2>
+
+<%= form_with model: @address, url: addresses_path, method: :post do |f| %>
+  <label for="postal_code">郵便番号(ハイフンなし)</label>
+  <%= f.text_field :postal_code, autofocus: true, id:"postal_code" %><br>
+  <label for="address">住所</label>
+  <%= f.text_field :address, autofocus: true, id:"address" %><br>
+  <label for="inputName">宛名</label>
+  <%= f.text_field :name, autofocus: true, id:"inputName" %>
+
+  <%= f.submit '新規登録', class: "btn btn-secondary" %>
+<% end %>
+
+
+
+<table>
+  <thead>
+    <tr>
+      <th>郵便番号</th>
+      <th>住所</th>
+      <th>宛名</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <% @addresses.each do |address| %>
+        <%= address.postal_code %>
+        <%= address.address %>
+        <%= address.name %>
+    <% end %>
+  </tbody>
+</table>

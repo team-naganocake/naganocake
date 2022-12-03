@@ -15,12 +15,22 @@ class Public::AddressesController < ApplicationController
   end
 
   def destroy
+    @address = Address.find(params[:id])
+    @address.destroy
+    redirect_to addresses_path #同じ画面のまま(public/addresses#index)
   end
 
   def edit
+    @address = Address.find(params[:id])
   end
 
   def update
+    @address = Address.find(params[:id])
+    if @address.update(address_params)
+      redirect_to addresses_path#public/addresses#intex
+    else
+      render :edit
+    end
   end
 
 

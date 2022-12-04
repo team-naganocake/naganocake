@@ -32,10 +32,13 @@ Rails.application.routes.draw do
   end
 
   scope module: :public do
-    # get 'addresses/index'
-    # get 'addresses/edit'
     #【public/addressesコントローラー】
     resources :addresses, only:[:index, :edit, :create, :update, :destroy]
+  end
+
+  scope module: :public do
+    #【pulic/itemsコントローラー】
+    resources :items, only:[:index, :show]
   end
 
 

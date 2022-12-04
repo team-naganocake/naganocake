@@ -1,2 +1,14 @@
 <h1>Public::Items#index</h1>
-<p>Find me in app/views/public/items/index.html.erb</p>
+
+<% @genres.each do |genre| %>
+    <%= link_to genre.name, items_path(genre_id: genre.id) %><br>
+    <!--idを指定して取り出したい時は↑こういう書き方になる？-->
+    <!--(genre_id: genre.id)これ書かないとエラー出る。genre.idを指定することでジャンル分けするみたいな？-->
+<% end %>
+
+
+<% @items.each do |item| %>
+  <%= item.name %>
+
+<% end %>
+

@@ -27,7 +27,7 @@ class Public::CustomersController < ApplicationController
     @customer = current_customer
     @customer.update(is_deleted: true) #ここでis_deletedカラムの値をtrue(退会済）に更新
     reset_session #この記述で現在のログイン状況をリセットする（destroyではない）
-    # flash[:notice] = "退会が完了しました。他に記載が必要だと思う。とりあえず後回し"
+    # flash[:notice] = "退会が完了しました。<%= flash[:キー名] %>Viewの表示させたいところに記載する
     redirect_to root_path #処理完了後ルートパスへ遷移
   end
 

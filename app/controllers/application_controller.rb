@@ -4,34 +4,24 @@ class ApplicationController < ActionController::Base
   #ActionController::InvalidAuthenticityTokenというエラーが出たため記述してみた
     protect_from_forgery
 
-  # def after_sign_in_path_for(resource)
-  #   if Admin
-  #     admin_customers_path
-  #     #とりあえず、会員一覧へ。本当は注文一覧（管理者TOP）画面へ
-  #   else
-  #     root_path #エンドユーザー側のTOP画面へ
-  #   end
-  # end
+  def after_sign_in_path_for(resource)
+    if admin_signed_in?
+      #if resource.is_a?(Admin)…resource がAdmin のインスタンスであれば true を返すという処理
+      admin_customers_path
+      #とりあえず、会員一覧へ。本当は注文一覧（管理者TOP）画面へ
+    else customer_signed_in?
+      root_path #エンドユーザー側のTOP画面へ
+    end
+  end
 
 
-  # def after_sign_out_path_for(resource)
-  #   if Admin
-  #     new_admin_session_path#管理者ログイン画面へ
-  #   else
-  #     root_path　#エンドユーザー側のTOP画面へ
-  #   end
-  # end
-
-#   def after_sign_in_path_for(resource)
-#   case resource
-#   when User
-#     session[:previous_url] || root_path
-#   when Shop
-#     shop_path(resouce)
-#   when Admin
-#     admin_root_path
-#   end
-# end
+  def after_sign_out_path_for(resource)
+    if resource == :admin
+      new_admin_session_path#管理者ログイン画面へ
+    else
+      root_path#エンドユーザー側のTOP画面へ
+    end
+  end
 
 
   protected

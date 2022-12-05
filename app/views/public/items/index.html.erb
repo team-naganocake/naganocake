@@ -7,8 +7,6 @@
     <!--(genre_id: genre.id)これ書かないとエラー出る。genre.idを指定することでジャンル分けするみたいな？-->
 <% end %>
 
-
-
 <% if params[:genre_id] %>
   <%= @genre.name %>一覧<br>
 <% else %>
@@ -27,3 +25,4 @@
 <% end %>
 <!--No-imageの場合については未設定-->
 
+<%= paginate @items %>

@@ -1,26 +1,42 @@
 class Public::ItemsController < ApplicationController
 
   def index
-    @items = Item.all
+    @items = Item.where(is_active: true).page(params[:page])
+    #@items = Item.allに、販売中であるという制約とページネーションを追加
     @genres = Genre.all
     if params[:genre_id].present?
       #presentメソッドでparams[:genre_id]に値が含まれているか確認 => trueの場合下記を実行
       @genre = Genre.find(params[:genre_id])
-      @items = @genre.items
+      @items = @genre.items.where(is_active: true).page(params[:page])
+      #@items = @genre.itemsに、販売中であるという制約とページネーションを追加
     end
   end
 
   def show
-    @items = Item.all
-    @genres = Genre.all
-    if params[:genre_id].present?
-      #presentメソッドでparams[:genre_id]に値が含まれているか確認 => trueの場合下記を実行
-      @genre = Genre.find(params[:genre_id])
-      @items = @genre.items
-    end
-    
     @item = Item.find(params[:id])
+    @genres = Genre.all
+    #ここに"カートに入れるに関連した追加の記述が必要"
+    #例）cart_product = CartProduct.new
   end
+
+
+  #######################################
+  # def index
+  #   @items = Item.page(params[:page])
+  #   #@items = Item.allをページネーション用に書き換え
+  #   @genres = Genre.all
+  #   if params[:genre_id].present?
+  #     #presentメソッドでparams[:genre_id]に値が含まれているか確認 => trueの場合下記を実行
+  #     @genre = Genre.find(params[:genre_id])
+  #     @items = @genre.items.page(params[:page])
+  #     #@items = @genre.itemsをページネーション用に書き換え
+  #   end
+  # end
+
+  # def show
+  #   @item = Item.find(params[:id])
+  #   @genres = Genre.all
+  # end
 
 
   #privateは記述をしたコントローラ内でしか参照できない
@@ -30,5 +46,4 @@ class Public::ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:genre_id, :name, :introduction, :price, :is_active, :image)
   end
-
 end

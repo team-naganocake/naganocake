@@ -17,75 +17,53 @@
   <body>
     <header>
       <!--動的ヘッダーの作成-->
-      <!--<%# if admin_signed_in? %>-->
-      <!--  <li class="nav-item">-->
-      <!--    <%#= link_to "商品一覧", admin_items_path, class: 'nav-link text-dark' %>-->
-      <!--  </li>-->
-      <!--  <li class="nav-item">-->
-      <!--    <%#= link_to '会員一覧', admin_customers_path, class: 'nav-link text-dark' %>-->
-      <!--  </li>-->
+      <% if admin_signed_in? %>
+      <!--管理者がログインした時-->
+        <li class="nav-item">
+          <%= link_to "商品一覧", admin_items_path, class: 'nav-link text-dark' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to '会員一覧', admin_customers_path, class: 'nav-link text-dark' %>
+        </li>
         <!--<li class="nav-item">-->
-          <%#= link_to "注文履歴一覧", （現在未作成）_path, class: 'nav-link text-dark' %>
+          注文履歴一覧<%#= link_to "注文履歴一覧", （現在未作成）_path, class: 'nav-link text-dark' %>
         <!--</li>-->
-      <!--  <li class="nav-item">-->
-      <!--    <%#= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link text-dark' %>-->
-      <!--  </li>-->
-      <!--  <li class="nav-item">-->
-      <!--    <%#= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %>-->
-      <!--  </li>-->
-      <!--<%# else %>-->
-      <!--ここから下：管理者がログイン前のため、会員側のログイン前ヘッダーと同じもの-->
-      <!--  <li class="nav-item">-->
-      <!--    <%#= link_to "About", root_path, class: 'nav-link text-dark' %>-->
-      <!--  </li>-->
+        <li class="nav-item">
+          <%= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link text-dark' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %>
+        </li>
+      <% elsif customer_signed_in? %>
+      <!--顧客がログインしている時-->
+        ようこそ、<%= current_customer.last_name %>さん！
+        <li class="nav-item">
+          <%= link_to "マイページ", customers_my_page_path, class: 'nav-link text-dark' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to '商品一覧', items_path, class: 'nav-link text-dark' %>
+        </li>
         <!--<li class="nav-item">-->
-          <%#= link_to '商品一覧', public/itemsの商品一覧（現在未作成）_path, class: 'nav-link text-dark' %>
-        <!--</li>-->
-      <!--  <li class="nav-item">-->
-      <!--    <%#= link_to "新規登録", new_customer_registration_path, class: 'nav-link text-dark' %>-->
-      <!--  </li>-->
-      <!--  <li class="nav-item">-->
-      <!--    <%#= link_to "ログイン", new_customer_session_path, class: 'nav-link text-dark' %>-->
-      <!--  </li>-->
-      <!--<%# end %>-->
-
-
-
-
-
-      <!--<%# if customer_signed_in? %>-->
-      <!--  <li class="nav-item">-->
-      <!--    <%#= link_to "マイページ", customers_my_page_path, class: 'nav-link text-dark' %>-->
-      <!--  </li>-->
-      <!--  <li class="nav-item">-->
-          <%#= link_to '商品一覧', (現在未作成）_path, class: 'nav-link text-dark' %>
-      <!--  </li>-->
-      <!--  <li class="nav-item">-->
           <%#= link_to "カート", （現在未作成）_path, class: 'nav-link text-dark' %>
-      <!--  </li>-->
-      <!--  <li class="nav-item">-->
-      <!--    <%#= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link text-dark' %>-->
-      <!--  </li>-->
-      <!--<%# else %>-->
-      <!--ここから下：管理者がログイン前のため、会員側のログイン前ヘッダーと同じもの-->
-      <!--  <li class="nav-item">-->
-      <!--    <%#= link_to "About", root_path, class: 'nav-link text-dark' %>-->
-      <!--  </li>-->
-      <!--  <li class="nav-item">-->
-          <%#= link_to '商品一覧', public/itemsの商品一覧（現在未作成）_path, class: 'nav-link text-dark' %>
-      <!--  </li>-->
-      <!--  <li class="nav-item">-->
-      <!--    <%#= link_to "新規登録", new_customer_registration_path, class: 'nav-link text-dark' %>-->
-      <!--  </li>-->
-      <!--  <li class="nav-item">-->
-      <!--    <%#= link_to "ログイン", new_customer_session_path, class: 'nav-link text-dark' %>-->
-      <!--  </li>-->
-      <!--< end %>-->
-
-
-
-
-
+        <!--</li>-->
+        <li class="nav-item">
+          <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link text-dark' %>
+        </li>
+      <% else %>
+      <!--管理者・顧客がログインしていない時-->
+        <li class="nav-item">
+          <%= link_to "About", root_path, class: 'nav-link text-dark' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to '商品一覧', items_path, class: 'nav-link text-dark' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "新規登録", new_customer_registration_path, class: 'nav-link text-dark' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "ログイン", new_customer_session_path, class: 'nav-link text-dark' %>
+        </li>
+      <% end %>
 
     </header>
     <%= yield %>

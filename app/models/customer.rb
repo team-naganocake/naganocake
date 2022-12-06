@@ -4,8 +4,11 @@ class Customer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  #public/addressesコントローラーでのアソシエーション設定
+  #アソシエーション：customerとaddresses(1：N)を関連付ける
   has_many :addresses, dependent: :destroy
+
+  #アソシエーション：customerとcart_item(1:N)を関連付ける
+  has_many :cart_items, dependent: :destroy
 
 
 

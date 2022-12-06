@@ -1,5 +1,5 @@
 class Address < ApplicationRecord
-  #public/addressesコントローラーでのアソシエーション設定
+  #アソシエーション：customerとaddress(1:N)を関連付ける
   belongs_to :customer
 
 end

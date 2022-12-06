@@ -41,6 +41,12 @@ Rails.application.routes.draw do
     resources :items, only:[:index, :show]
   end
 
+  scope module: :public do
+    #【public/cart_itemsコントローラー】
+    resources :cart_items, only:[:index, :update, :destroy, :create]
+    delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
+  end
+
 
 
   # devise_for :admins(下記のように書き換え)

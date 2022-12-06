@@ -9,6 +9,9 @@ class Public::ItemsController < ApplicationController
       @genre = Genre.find(params[:genre_id])
       @items = @genre.items.where(is_active: true).page(params[:page])
       #@items = @genre.itemsに、販売中であるという制約とページネーションを追加
+    else
+      @items = Item.where(is_active: true).page(params[:page])
+      #@items = Item.allに、販売中であるという制約とページネーションを追加
     end
   end
 

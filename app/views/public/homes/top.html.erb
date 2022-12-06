@@ -1,5 +1,13 @@
 <h1> public/homes#Topページ </h1>
 
+ジャンル検索<br>
+<% @genres.each do |genre| %>
+    <%= link_to genre.name, items_path(genre_id: genre.id) %><br>
+    <!--idを指定して取り出したい時は↑こういう書き方になる？-->
+    <!--(genre_id: genre.id)これ書かないとエラー出る。genre.idを指定することでジャンル分けするみたいな？-->
+<% end %>
+
+
 <h4>
 ようこそ、ながのCAKEへ！<br>
 このサイトは、ケーキ販売のECサイトになります。<br>
@@ -9,5 +17,12 @@
 
 
 <h3>新着商品</h3>
+<% @items.each do |item| %>
+  <%= link_to item_path(item.id) do %>
+    <%= image_tag item.image, size: "190x150" %>
+  <% end %><br>
+  <%= item.name %><br>
+  ￥<%= (item.price*1.1).floor %><br>
+<% end %>
 
-<%#= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+<%= link_to "全ての商品を見る＞", items_path %>

@@ -18,8 +18,7 @@ class Public::ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id])
     @genres = Genre.all
-    #ここに"カートに入れるに関連した追加の記述が必要"
-    #例）cart_product = CartProduct.new
+    @cart_item = CartItem.new
   end
 
 

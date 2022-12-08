@@ -4,8 +4,13 @@ class Item < ApplicationRecord
 
   #アソシエーション：genreとitem(1:Nの関係)を関連付ける
   belongs_to :genre
-
   #アソシエーション：itemとcart_item(1：Nの関係)を関連付ける
   has_many :cart_items, dependent: :destroy
+
+
+  #消費税を求めるメソッド
+  def with_tax_price
+    (price*1.1).floor
+  end
 
 end

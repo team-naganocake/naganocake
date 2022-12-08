@@ -5,24 +5,29 @@ class Public::CartItemsController < ApplicationController
     @cart_item.customer_id = current_customer.id
     @cart_item.save
     redirect_to cart_items_path
-    
+    #同一商品が存在する場合の処理をあとでここに書く
+  end
+
+  def update
+    @cart_item = CartItem.find(params[:id])
+    @cart_item.update(cart_items_params)
+    redirect_to cart_items_path
+    #destroyしたときのupdateもあとでここに書く
   end
 
   def index
     @cart_item = CartItem.new
     @customer = current_customer
     @cart_items = @customer.cart_items
+    #total_priceの式をここに書く
   end
 
-  def update
-  end
 
   def destroy
   end
 
   def destroy_all
   end
-
 
 
 

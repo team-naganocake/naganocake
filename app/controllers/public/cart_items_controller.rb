@@ -19,19 +19,20 @@ class Public::CartItemsController < ApplicationController
     @cart_item = CartItem.new
     @customer = current_customer
     @cart_items = @customer.cart_items
-    #total_priceの式をここに書く
+    
+    @total = 0 
+    #カート内の合計金額を出すために入れ物作成(数字だけ入るように)
   end
 
 
   def destroy
+    
   end
 
   def destroy_all
   end
 
-
-
-  #ここに書いたカラム情報を取得してもいいという許可。実際に受け取っているわけではなくあくまでも許可の指示。
+   #ここに書いたカラム情報を取得してもいいという許可。実際に受け取っているわけではなくあくまでも許可の指示。
   #privateは記述をしたコントローラ内でしか参照できない
   #protectedは呼び出された他のコントローラーからも参照することができる
   protected

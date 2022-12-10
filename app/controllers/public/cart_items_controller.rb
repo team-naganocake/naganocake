@@ -19,18 +19,23 @@ class Public::CartItemsController < ApplicationController
     @cart_item = CartItem.new
     @customer = current_customer
     @cart_items = @customer.cart_items
-    
-    @total = 0 
+
+    @total = 0
     #カート内の合計金額を出すために入れ物作成(数字だけ入るように)
   end
 
 
   def destroy
-    
+    @cart_item = CartItem.find(params[:id])
+    @cart_item.destroy
+    redirect_to cart_items_path#public/cart_items#indexへ
   end
 
   def destroy_all
+    current_customer.cart_items.destroy_all
+    redirect_to cart_items_path#public/cart_items#indexへ
   end
+
 
    #ここに書いたカラム情報を取得してもいいという許可。実際に受け取っているわけではなくあくまでも許可の指示。
   #privateは記述をしたコントローラ内でしか参照できない

@@ -65,5 +65,13 @@
 </table>
 
 
-<h3>配送先　※あとでリンク先</h3><%#= link_to '一覧を見る', リンク先 %>
-<h3>注文履歴　※あとでリンク先</h3><%#= link_to '一覧を見る', リンク先 %>
+<table>
+  <tr>
+    <th>配送先</th>
+    <td><%= link_to '一覧を見る', addresses_path %></td>
+  </tr>
+  <tr>
+    <th>注文履歴</th>
+    <td><%#= link_to '一覧を見る', リンク先 %></td>
+  </tr>
+</table>

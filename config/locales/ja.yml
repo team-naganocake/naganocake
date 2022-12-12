@@ -1,0 +1,8 @@
+#このように記述することで、先ほど0とcredit_card・1とtransfer が紐づいていたものが、
+#日本語化されるようになる
+ja:
+    enums:
+      order:
+        payment_method:
+          credit_card: "クレジットカード"
+          transfer: "銀行振込"

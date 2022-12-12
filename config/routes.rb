@@ -49,6 +49,13 @@ Rails.application.routes.draw do
     #resourceの行と順番を入れ替えることによってCouldn't find CartItem with 'id'=destroy_allのエラーは消えた
   end
 
+  scope module: :public do
+    #【public/ordersコントローラー】
+    post 'orders/confirm' => 'orders#confirm'
+    get 'orders/complete' => 'orders#complete'
+    resources :orders, only:[:new, :create, :index, :show]
+  end
+
 
 
   # devise_for :admins(下記のように書き換え)

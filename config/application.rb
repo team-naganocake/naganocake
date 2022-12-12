@@ -18,5 +18,10 @@ module Naganocake
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+
+    #この記述により、Rails アプリケーションのデフォルトの言語が日本語となり
+    #次の手順で作成する yml ファイルをもとに日本語化を行う
+    config.i18n.default_locale = :ja
   end
 end

@@ -2,6 +2,12 @@
 
 <h2>ショッピングカート</h2>
 
+<%#= link_to 'カートを空にする', cart_items_destroy_all_path, method: :delete %>
+
+ <%# if @cart_item.customer == current_customer ここはなくてもいい%>
+  <%= link_to 'カートを空にする', cart_items_destroy_all_path, method: :delete %>
+ <%# end %>
+
 <table>
   <thead>
     <tr>
@@ -15,10 +21,6 @@
 
   <tbody>
     <% @cart_items.each do |cart_item| %>
-      <!--destroy_allがうまくいかない-->
-      <%# if cart_item.customer == current_customer %>
-        <%#= link_to 'カートを空にする'，cart_items_destroy_all_path, method: :delete %>
-      <%# end %>
 
       <% @total = @total + cart_item.subtotal %>
 
@@ -36,7 +38,7 @@
         <td><%= cart_item.subtotal.to_s(:delimited) %></td>
         <td>
           <% if cart_item.customer == current_customer %>
-            <%= link_to '削除する', cart_item_path(cart_item), method: :delete %>
+            <%= link_to '削除する', cart_item_path(cart_item.id), method: :delete %>
           <% end %>
         </td>
         <!--試しに部ifの部分をコントローラに書いてみたけど、それでも問題なかった-->

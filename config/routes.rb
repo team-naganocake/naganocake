@@ -43,8 +43,10 @@ Rails.application.routes.draw do
 
   scope module: :public do
     #【public/cart_itemsコントローラー】
-    resources :cart_items, only:[:index, :update, :destroy, :create]
     delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
+    resources :cart_items, only:[:index, :update, :destroy, :create]
+    #destroy_allで、「destroy_all」がidとみなされていた
+    #resourceの行と順番を入れ替えることによってCouldn't find CartItem with 'id'=destroy_allのエラーは消えた
   end
 
 

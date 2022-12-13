@@ -1,16 +1,9 @@
 class Public::CartItemsController < ApplicationController
 
   def create
-    # @cart_item = CartItem.new(cart_items_params)
-    # @cart_item.customer_id = current_customer.id
-    # @cart_item.save
-    # redirect_to cart_items_path
-
     #【カート商品を追加・保存】
-    @cart_item = CartItem.new(cart_items_params)
-    @cart_item.customer_id = current_customer.id
-    @total = 0
-    # @cart_items = current_customer.cart_items.new(cart_items_params)
+    @cart_item_new = CartItem.new(cart_items_params)
+    @cart_item_new.customer_id = current_customer.id
     if current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id]).present?
        #もともとカート内にあるもの「item_id」
        #今追加したもの　　　　　　 params[:cart_item][:item_id]
@@ -23,13 +16,11 @@ class Public::CartItemsController < ApplicationController
        @cart_item.save
        redirect_to cart_items_path
     #【もしカート内に「同じ」商品がない場合は通常の保存処理】
-    elsif @cart_item.save
-      @cart_items = current_customer.cart_items.all
-      render :index
-    #【保存できなかった場合】→これはどういう意味？一つ前の処理と同じじゃない？
     else
-      render :index
+      @cart_item_new.save
+      redirect_to cart_items_path
     end
+    #ここにまとめてredirect処理書いてもいい
   end
 
 
@@ -68,7 +59,7 @@ class Public::CartItemsController < ApplicationController
   protected
 
   def cart_items_params
-    params.require(:cart_item).permit(:item_id, :customer_id, :amount)
+    params.require(:cart_item).permit(:item_id, :amount)
   end
 
 end

@@ -3,16 +3,47 @@
 <h2>注文情報入力</h2>
   <%= form_with model: @order, url: orders_confirm_path, method: :post do |f| %>
 <h3>支払方法</h3>
-  <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
-  <%= f.label :payment_method_credit_card, Order.payment_methods_i18n[:credit_card] %><br>
-
-  <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
-  <%= f.label :payment_method_transfer, Order.payment_methods_i18n[:transfer]%>
-  <!--このあたり全部消してシンプルな書き方にする？？？-->
+  <%#= f.radio_button :payment_method, Order.payment_methods.key(0) %>
+  <%#= f.label :payment_method_credit_card, Order.payment_methods_i18n[:credit_card] %>
+  <%#= f.radio_button :payment_method, Order.payment_methods.key(1) %>
+  <%#= f.label :payment_method_transfer, Order.payment_methods_i18n[:transfer]%>
+  <!--これは？？？-->
+  <%= f.radio_button :payment_method, "credit_card", checked: "checked" %>
+  <%= f.label :payment_method, "クレジットカード" %>
+  <%= f.radio_button :payment_method, "transfer" %>
+  <%= f.label :payment_method, "銀行振込" %>
 
 <h3>お届け先</h3>
+  <%= f.radio_button :address_option, 0, checked: "checked" %>
+    <!--[:address_option]=="0"として設定する-->
+    <%= f.label :address, "ご自身の住所" %>
+    <br>
+    〒<%= @customer.postal_code %>
+    <%= @customer.address %><br>
+    <%= @customer.last_name %><%= @customer.first_name %>
+    <br>
 
- <%= @customer.postal_code %>
- <%= @customer.address %>
- <%= @customer.last_name %><%= @customer.first_name %>
+  <%= f.radio_button :address_option, 1 %>
+    <%= f.label :address, "登録住所から選択" %>
+    <br>
+    <%= f.select :address_id, options_from_collection_for_select(Address.all, :id, :address_display) %>
+    <br>
+
+  <%= f.radio_button :address_option, 2 %>
+    <%= f.label :address, "新しいお届け先" %>
+    <table>
+      <tr>
+        <th><%= f.label :postal_code, "郵便番号(ハイフンなし)" %></th>
+        <td><%= f.text_field :postal_code %></td>
+      </tr>
+       <tr>
+        <th><%= f.label :address, "住所" %></th>
+        <td><%= f.text_field :address %></td>
+      </tr>
+       <tr>
+        <th><%= f.label :name, "宛名" %></th>
+        <td><%= f.text_field :name %></td>
+      </tr>
+    </table>
+  <%= f.submit "確認画面へ進む" %>
 <% end %>

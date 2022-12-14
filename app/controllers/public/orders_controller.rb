@@ -12,7 +12,8 @@ class Public::OrdersController < ApplicationController
     @order.postal_code = current_customer.postal_code
     @order.address = current_customer.address
     @order.name = current_customer.first_name + current_customer.last_name
-    
+
+    @order.shipping_cost = 800
     @total = 0
 
     #  [:address_option]=="0"のデータ(customerの住所)を呼び出す
@@ -20,19 +21,16 @@ class Public::OrdersController < ApplicationController
       @order.postal_code = current_customer.postal_code
       @order.address = current_customer.address
       @order.name = current_customer.last_name + current_customer.first_name
-
     elsif params[:order][:address_option] == "1"
       @address = Address.find(params[:order][:address_id])
       @order.postal_code = @address.postal_code
       @order.address = @address.address
       @order.name = @address.name
-
-    elsif params[:order][:address_option] = "2"
-      @order.postal_code = params[:order][:post_code]
+    else
+      #params[:order][:address_option] = "2"elseの横に条件式は書いちゃダメ。ここは全部の受け皿。エラーでる。
+      @order.postal_code = params[:order][:postal_code]
       @order.address = params[:order][:address]
       @order.name = params[:order][:name]
-    else
-      render 'new'
     end
   end
 

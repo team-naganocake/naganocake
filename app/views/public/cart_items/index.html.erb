@@ -37,9 +37,9 @@
         </td>
         <td><%= cart_item.subtotal.to_s(:delimited) %></td>
         <td>
-          <% if cart_item.customer == current_customer %>
+          <%# if cart_item.customer == current_customer %>いらない
             <%= link_to '削除する', cart_item_path(cart_item.id), method: :delete %>
-          <% end %>
+          <%# end %>
         </td>
         <!--試しに部ifの部分をコントローラに書いてみたけど、それでも問題なかった-->
       </tr>

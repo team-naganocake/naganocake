@@ -6,5 +6,7 @@ class Order < ApplicationRecord
 
   #アソシエーション：customerとorder(1:Nの関係)を関連付ける
   belongs_to :customer
+  #アソシエーション：orderとorder_detail(1:Nの関係)を関連付ける
+  has_many :order_details, dependent: :destroy
 
 end

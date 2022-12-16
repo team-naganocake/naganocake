@@ -1,11 +1,13 @@
 class Public::OrdersController < ApplicationController
 
+  #注文情報(支払方法・配送先)入力画面
   def new
     @order = Order.new
     @customer = current_customer
     @addresses = current_customer.addresses.all
   end
 
+  #注文情報確認画面
   def confirm
     @cart_items = current_customer.cart_items
     @order = Order.new(order_params)
@@ -33,6 +35,31 @@ class Public::OrdersController < ApplicationController
       @order.name = params[:order][:name]
     end
   end
+
+
+  #注文を確定するためのアクション
+  #@orderに情報を保存する
+  def create
+    @order = Order.new(order_params)
+    @order.customer_id = current_customer.id
+    @cart_items = current_customer.cart_items.all
+    if @order.save
+    #Q、saveとsave!の違いは？？
+      @cart_items.each do |cart_item|
+        order_detail = OrderDetail.new(order_id: @order.id)
+        #order_item.order_id = @order.id
+        order_detail.item_id = cart_item.item_id
+        order_detail.price = cart_item.item.price
+        order_detail.amount = cart_item.amount
+        order_detail.save
+      end
+      @cart_items.destroy_all
+      redirect_to orders_complete_path
+    else
+      render "new"
+    end
+  end
+
 
   def complete
   end

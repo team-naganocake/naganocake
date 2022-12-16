@@ -6,6 +6,8 @@ class Item < ApplicationRecord
   belongs_to :genre
   #アソシエーション：itemとcart_item(1：Nの関係)を関連付ける
   has_many :cart_items, dependent: :destroy
+  #アソシエーション：itemとorder_detail(1:Nの関係)を関連付ける
+  has_many :order_details, dependent: :destroy
 
 
   #消費税を求めるメソッド

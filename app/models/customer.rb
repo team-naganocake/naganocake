@@ -6,10 +6,8 @@ class Customer < ApplicationRecord
 
   #アソシエーション：customerとaddresses(1：N)を関連付ける
   has_many :addresses, dependent: :destroy
-
   #アソシエーション：customerとcart_item(1:N)を関連付ける
   has_many :cart_items, dependent: :destroy
-
   #アソシエーション：customerとorder(1:N)を関連付ける
   has_many :orders, dependent: :destroy
 

@@ -6,3 +6,21 @@ ja:
         payment_method:
           credit_card: "クレジットカード"
           transfer: "銀行振込"
+
+    order:
+      status:
+        payment_waiting: "入金待ち"
+        payment_confirmation: "入金確認"
+        in_production: "製作中"
+        preparing_delivery: "発送準備中"
+        delivered: "発送済み"
+    order_detail:
+      making_status:
+        production_not_possible: "製作不可"
+        production_pending: "製作待ち"
+        in_production: "製作中"
+        production_complete: "製作完了"
+
+#うまく日本語で表示されない時があった。
+#インデントを整える際に "Tabキー" を使用しているとうまく日本語で表示されないことがあるらしい
+#パターンです。インデントを整える際はTabキーでは無く、必ず 半角スペース を使用しましょう。

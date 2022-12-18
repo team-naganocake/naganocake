@@ -9,4 +9,8 @@ class Order < ApplicationRecord
   #アソシエーション：orderとorder_detail(1:Nの関係)を関連付ける
   has_many :order_details, dependent: :destroy
 
+  #status:注文ステータスの設定のために記述
+  enum status: { payment_waiting: 0, payment_confirmation: 1, in_production: 2, preparing_delivery: 3, delivered: 4 }
+
+
 end

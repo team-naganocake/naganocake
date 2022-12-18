@@ -44,7 +44,7 @@ class Public::OrdersController < ApplicationController
     @order.customer_id = current_customer.id
     @cart_items = current_customer.cart_items.all
     if @order.save
-    #Q、saveとsave!の違いは？？
+    #Q、saveとsave!の違い確認
       @cart_items.each do |cart_item|
         order_detail = OrderDetail.new(order_id: @order.id)
         #order_item.order_id = @order.id
@@ -65,6 +65,8 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
+    @orders = current_customer.orders.all.page(params[:page]).per(5).order('created_at DESC')
+    # DESCは、降順(新しいものが上)
   end
 
   def show

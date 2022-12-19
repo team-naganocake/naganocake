@@ -14,7 +14,7 @@
   <tbody>
     <% @orders.each do |order| %>
       <tr>
-        <td><%= order.created_at.strftime("%Y/%m/%d %H:%M:%S") %></td>
+        <td><%= link_to order.created_at.strftime("%Y/%m/%d %H:%M:%S"), admin_order_path(order.id) %></td>
         <td><%= order.customer.last_name %><%= order.customer.first_name %></td>
         <td><%= order.order_details.sum(:amount) %></td>
         <!--sumメソッドの引数で直接カラム名を指定し、合計値を求める-->
@@ -26,3 +26,5 @@
     <% end %>
   </tbody>
 </table>
+
+<%= paginate @orders %>

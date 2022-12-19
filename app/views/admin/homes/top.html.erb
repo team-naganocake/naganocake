@@ -1,0 +1,28 @@
+<h4>admin/homes#top</h4>
+<h3>注文履歴一覧</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>購入日時</th>
+      <th>購入者</th>
+      <th>注文個数</th>
+      <th>注文ステータス</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= order.created_at.strftime("%Y/%m/%d %H:%M:%S") %></td>
+        <td><%= order.customer.last_name %><%= order.customer.first_name %></td>
+        <td><%= order.order_details.sum(:amount) %></td>
+        <!--sumメソッドの引数で直接カラム名を指定し、合計値を求める-->
+        <!--amountだけだとエラーがでる。order確定時、個数の合算値は求めていない-->
+        <!--金額求める際にtotal=0を定義して、その箱の中にeach文を使って金額を入れて足していった。public/cart_items#index-->
+        <!--金額の場合は税込みにする計算とか設定していたし…使うのは難しそう。。単純に数足すぐらいだったら.sum(:amount)-->
+        <td><%#= order.status %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

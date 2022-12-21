@@ -1,27 +1,48 @@
-<h2>管理者ログイン</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email, "メールアドレス" %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com" %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-3"></div><div class="col-3, m-3"><h2><span style="background-color:#d3d3d3;">管理者ログイン</span></h2></div>
+    <!--空のdivクラスを作って、Bootstrapを使って位置を調節できるようにした-->
+    <!--m-3はスペーシング(Bootstrapの幅調整できるやつ)で上下左右にマージンつけた-->
   </div>
 
-  <div class="field">
-    <%= f.label :password, "パスワード" %>
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+  <center>
+    <table>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <tr>
+          <div class="field">
+            <th width="150"><%= f.label :email, "メールアドレス" %></th>
+            <td><%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com", size: "40" %></td>
+          </div>
+        </tr>
 
-  <!--□remenber me ボタンは表示されていないので、ここではコメントアウト-->
-  <%# if devise_mapping.rememberable? %>
-    <!--<div class="field">-->
-    <!--  <%#= f.check_box :remember_me %>-->
-    <!--  <%#= f.label :remember_me %>-->
-    <!--</div>-->
-  <%# end %>
+        <div class="field">
+          <tr>
+            <th><%= f.label :password, "パスワード" %></th>
+            <td><%= f.password_field :password, autocomplete: "current-password", size: "40" %></td>
+          </tr>
+        </div>
 
-  <div class="actions">
-    <%= f.submit "ログイン" %>
-  </div>
-<% end %>
+        <tr>
+          <th></th>
+          <td>
+            <div class="actions mt-3">
+              <%= f.submit "ログイン", class:"btn btn-primary w-50" %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </center>
+</div>
 
-<%= render "admin/shared/links" %>
+
+<%#= render "admin/shared/links" %>
+<!--View/public/shared/_links.html.erb参照。これはadminではなくpublicに必要なもの-->
+
+<!--□remenber me ボタンは表示されていないので、ここではコメントアウト-->
+    <%# if devise_mapping.rememberable? %>
+      <!--<div class="field">-->
+      <!--  <%#= f.check_box :remember_me %>-->
+      <!--  <%#= f.label :remember_me %>-->
+      <!--</div>-->
+    <%# end %>

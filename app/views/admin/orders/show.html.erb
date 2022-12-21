@@ -47,6 +47,14 @@
       <td><%= order_detail.amount %></td>
       <td><%= order_detail.item.with_tax_price * order_detail.amount %></td>
       <!--.to_s(:delimited)つけるとString can't be coerced into Integerのエラーが。。計算がカラムと×-->
+      <td>
+        <!--ステータス関連後回し-->
+         <%#= form_with model: @order, url: admin_order_path, method: :patch do |f| %>
+          <%#= f.select :status, Order.statuses.keys %>ここで_i18nつけるとエラーでる
+          <%#= f.select :status, options_from_collection_for_select(Order.all, :id, :status)これエラー出る %>
+          <%#= f.submit "更新" , class: "btn btn-outline-success" %>
+        <%# end %>
+      </td>
     </tr>
     <% end %>
   </tbody>

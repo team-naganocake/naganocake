@@ -7,8 +7,8 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     if admin_signed_in?
       #if resource.is_a?(Admin)…resource がAdmin のインスタンスであれば true を返すという処理
-      admin_customers_path
-      #とりあえず、会員一覧へ。本当は注文一覧（管理者TOP）画面へ
+      admin_path
+      #注文一覧（管理者TOP）画面へ
     else customer_signed_in?
       root_path #エンドユーザー側のTOP画面へ
     end

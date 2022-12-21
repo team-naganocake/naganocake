@@ -1,38 +1,48 @@
-<h1>Admin::Items#index</h1>
+<h5>Admin::Items#index</h5>
 
-<h2>商品一覧</h2>
-<!--ボタンマークつける-->
-<%= link_to "+", new_admin_item_path %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2"></div><div class="col-2"><h3><span style="background-color:#d3d3d3;">商品一覧</span></h3></div>
+    <!--ボタンマークつける-->
+    <%= link_to "+", new_admin_item_path %>
+  </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>商品ID</th>
-      <th>商品名</th>
-      <th>税抜き価格</th>
-      <th>ジャンル</th>
-      <th>ステータス</th>
-    </tr>
-  </thead>
+  <center>
+    <div class="row" style="width: 70%">
+      <table class="table">
+        <thead class="thead-light">
+          <div class="m-3">
+          <tr>
+            <th width="80">商品ID</th>
+            <th width="250">商品名</th>
+            <th width="100">税抜き価格</th>
+            <th width="200">ジャンル</th>
+            <th width="150">ステータス</th>
+          </tr>
+          </div>
+        </thead>
 
-  <tbody>
-    <% @items.each do |item| %>
-      <tr>
-        <td><%= item.id %></td>
-        <td><%= link_to item.name, admin_item_path(item.id) %></td>
-        <td><%= item.price %></td>
-        <td><%= item.genre.name %></td>
-        <td>
-          <% if item.is_active %>
-          販売中
-          <% else %>
-          販売停止中
+        <tbody>
+          <% @items.each do |item| %>
+            <tr>
+              <td><%= item.id %></td>
+              <td><%= link_to item.name, admin_item_path(item.id) %></td>
+              <td><%= item.price.to_s(:delimited) %></td>
+              <td><%= item.genre.name %></td>
+              <td>
+                <% if item.is_active %>
+                販売中
+                <% else %>
+                販売停止中
+                <% end %>
+              </td>
+            </tr>
           <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        </tbody>
+      </table>
+      </div>
+  </center>
+    <!--ページネーション-->
+    <%= paginate @items %>
 
-<!--ページネーション-->
-<%= paginate @items %>
+</div>

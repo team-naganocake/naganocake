@@ -21,7 +21,15 @@
   </tr>
   <tr>
     <th>注文ステータス</th>
-    <td></td>
+    <td>
+      <%= form_with model: @order, url:admin_order_path do |f| %>
+
+        <%#= f.select :status, ["入金待ち": 0, "入金確認": 1, "製作中":2, "発送準備中":3, "発送済み": 4] %>
+        <!--こういうふうに書いてあるのもあったけど、これだとセレクトボックスの表示が変になった-->
+        <%= f.select :status, Order.statuses_i18n.keys.map {|k| [Order.statuses_i18n[k], k]} %>
+        <%= f.submit "更新", class: 'btn btn-primary' %>
+      <% end %>
+    </td>
   </tr>
 </table>
 
@@ -48,12 +56,12 @@
       <td><%= order_detail.item.with_tax_price * order_detail.amount %></td>
       <!--.to_s(:delimited)つけるとString can't be coerced into Integerのエラーが。。計算がカラムと×-->
       <td>
-        <!--ステータス関連後回し-->
-         <%#= form_with model: @order, url: admin_order_path, method: :patch do |f| %>
-          <%#= f.select :status, Order.statuses.keys %>ここで_i18nつけるとエラーでる
-          <%#= f.select :status, options_from_collection_for_select(Order.all, :id, :status)これエラー出る %>
-          <%#= f.submit "更新" , class: "btn btn-outline-success" %>
-        <%# end %>
+        <!--製作ステータス関連-->
+        <%= form_with model: order_detail, url: admin_order_path(order_detail), method: :patch do |f| %>
+          <%= f.select :making_status, OrderDetail.making_statuses_i18n.keys.map {|k| [OrderDetail.making_statuses_i18n[k], k]} %>
+          <!--mapで配列の中から一つずつ取りだしている-->
+          <%= f.submit "更新" %>
+        <% end %>
       </td>
     </tr>
     <% end %>

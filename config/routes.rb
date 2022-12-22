@@ -6,6 +6,11 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
+    #【admin/order_detailsコントローラー】
+    resources :order_details, only:[:update]
+  end
+
+  namespace :admin do
     #【admin/homesコントローラ】
     get '/' => 'homes#top'
   end

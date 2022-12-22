@@ -13,7 +13,7 @@ class Admin::ItemsController < ApplicationController
     #一旦、ジャンル作成してから商品登録に再挑戦
   end
 
-   def index
+  def index
     @items = Item.all
     @genres = Genre.all
     @items = Item.page(params[:page])#ページネーション

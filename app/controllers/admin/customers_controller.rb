@@ -2,11 +2,12 @@ class Admin::CustomersController < ApplicationController
 
   def index
     @customers = Customer.all.page(params[:page])#ページネーション
+    #indexから詳細に移動しない
   end
 
   def show
     @customer = Customer.find(params[:id])
-    #ここではレコードを1件だけ取得するので、インスタンス変数名は単数形の「@customer」にした。
+    #ここではレコードを1件だけ取得するので、インスタンス変数名は単数形の「@customer」
   end
 
   def edit
@@ -16,7 +17,8 @@ class Admin::CustomersController < ApplicationController
   def update
     @customer = Customer.find(params[:id])
     @customer.update(customer_params)
-    redirect_to admin_path(@customer.id)#会員詳細へ
+    redirect_to admin_customer_path(@customer.id)#会員詳細へ。エラー
+    #遷移なし。Routing Error　No route matches [PATCH] "/admin"
   end
 
 

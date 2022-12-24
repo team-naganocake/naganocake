@@ -1,6 +1,11 @@
-<h1>Admin::Customers#show</h1>
+<!--<h1>Admin::Customers#show</h1>-->
 
-<h2><%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細</h2>
+<div class="container">
+  <div class="row mb-4">
+    <div class="col-2"></div>
+     <div class="col-8"><h4><span style="background-color:#d3d3d3;"><%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細</span></h4></div>
+  </div>
+
 
 <table>
   <tr>
@@ -44,6 +49,9 @@
 </table>
 
 <!--admin/customers#editに遷移-->
-<%= link_to "編集する", admin_edit_adim_cutomer_path(@customer.id) %>
+<%= link_to "編集する", edit_admin_customer_path(@customer.id) %>
 
-<%#= link_to "注文履歴一覧を見る", _path %>
+<!--Topページ(注文履歴一覧へ)-->
+<%= link_to "注文履歴一覧を見る", admin_path %>
+
+</div>

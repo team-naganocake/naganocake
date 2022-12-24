@@ -1,44 +1,56 @@
-<h1>Admin::Customers#index</h1>
+<!--<h1>Admin::Customers#index</h1>-->
+<div class="container">
+  <div class="row mb-4">
+    <div class="col-2"></div><div class="col-2"><h4><span style="background-color:#d3d3d3;">会員一覧</span></h4></div>
+  </div>
 
-<h2>会員一覧</h2>
+  <center>
+    <div class="row" style="width: 65%">
+      <table class="table table-sm">
+        <thead  class="thead-light">
+          <tr>
+            <th width="80">会員ID</th>
+            <th width="150">氏名</th>
+            <th width="250">メールアドレス</th>
+            <th width="100">ステータス</th>
+          </tr>
+        </thead>
 
-<table>
-  <thead>
-    <tr>
-      <th>会員ID</th>
-      <th>氏名</th>
-      <th>メールアドレス</th>
-      <th>ステータス</th>
-    </tr>
-  </thead>
+        <tbody>
+          <% @customers.each do |customer| %>
+          <tr>
+            <td>
+              <%= customer.id %>
+            </td>
+            <td>
+              <%= link_to (customer.last_name + customer.first_name), admin_customer_path(customer.id) %>
+              <!--会員詳細に遷移させたい。同じ画面(会員一覧のままで反応なし)-->
+            </td>
+            <td>
+              <%= customer.email %>
+            </td>
+            <td>
+              <% if customer.is_deleted %>
+              <font color="#a9a9a9">退会</font>
+              <% else %>
+              <font color="#32cd32">有効</font>
+              <% end %>
+            <!--[true：'退会', false:'有効']とか色々試してみたが×××これでもうまく書ければ問題ないけど習ったif文で書くとこうなる-->
+            </td>
+          </tr>
+          <% end %>
+          </tbody>
+        </table>
+      <!--ページネーション-->
+      <!--Q今ページネーション１Pの件数５にしている。１件にしたらちゃんと表示された。定数５の時表示されないのは問題ないか？何か解決策はあるのか？？-->
+      <%= paginate @customers %>
+    </div>
+  </center>
+</div>
 
-  <tbody>
-  <% @customers.each do |customer| %>
-  <tr>
-    <td>
-    <%= customer.id %>
-    </td>
-    <td>
-    <%= customer.last_name %><%= customer.first_name %>
-    </td>
-    <td>
-    <%= customer.email %>
-    </td>
-    <td>
-    <% if customer.is_deleted %>
-    退会
-    <% else %>
-    有効
-    <% end %>
-    <!--[true：'退会', false:'有効']とか色々試してみたが×××これでもうまく書ければ問題ないけど習ったif文で書くとこうなる-->
-    </td>
-  </tr>
-  <% end %>
-  </tbody>
-</table>
 <!--ページネーション-->
 <!--Q今ページネーション１Pの件数５にしている。１件にしたらちゃんと表示された。定数５の時表示されないのは問題ないか？何か解決策はあるのか？？-->
-<%= paginate @customers %>
+<%#= paginate @customers %>
 
 
 <!--Bookers2のView/books.indexをレイアウトの参照！！！-->

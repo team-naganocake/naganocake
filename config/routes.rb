@@ -28,11 +28,12 @@ Rails.application.routes.draw do
 
   namespace :admin do
     #【admin/customersコントローラー】
-    get 'customers' => 'customers#index'
-    get 'customers/:id' => 'customers#show'
-    get 'customers/:id/edit' => 'customers#edit', as:'edit_adim_cutomer'
-    patch 'customers/:id'=> 'customers#update'
-    # resources :customers
+    # get 'customers' => 'customers#index', as:'customers'
+    # get 'customers/:id' => 'customers#show', as:'customer'
+    # get 'customers/:id/edit' => 'customers#edit', as:'edit_cutomer'
+    # patch 'customers/:id'=> 'customers#update'
+     resources :customers, only:[:index, :show, :edit, :update]
+
   end
 
 

@@ -11,32 +11,33 @@
         <%= form_with model: @item, url: admin_items_path, method: :post do |f| %>
         <!--urlはidmin/items#create-->
           <tr>
-            <th width="160">商品画像</th>
-            <td><%= f.file_field :image, accept: "image/*" %></td>
+            <th width="160" align="left" valign="top">商品画像</th>
+            <td class="pb-2"><%= f.file_field :image, accept: "image/*" %></td>
             <!--ここのサイズ変えられない。。後で確認する-->
           </tr>
         <tr>
-          <th>商品名</th>
-          <td><%= f.text_field :name, placeholder: "商品名", size: "35"  %></td>
+          <th align="left" valign="top">商品名</th>
+          <td><%= f.text_field :name, placeholder: "商品名", size: "35", class: "w-100 mb-1"  %></td>
         </tr>
         <tr>
-          <th>商品説明</th>
-          <td><%= f.text_area :introduction, placeholder: "ここに説明文を記述します", size: "35x5" %></td>
-          <!--cols="35", size"35", size="縦ｘ横" width="35" これら×-->
+          <th align="left" valign="top">商品説明</th>
+          <td><%= f.text_area :introduction, placeholder: "ここに説明文を記述します", class: "w-100 mb-1" %></td>
+          <!--cols="35", size"35", size="縦ｘ横" width="35" これら×　上のtdタグに記述「class="pb-5"」して、全体の横幅を変えた-->
         </tr>
         <tr>
-          <th>ジャンル</th>
-           <td><%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name), { include_blank: '--選択してください--'} %>
+          <th align="left" valign="top">ジャンル</th>
+           <td><%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name), { include_blank: '--選択してください--'}, class: "w-100 mb-1" %>
+           <!--サイズ変更:「class: "w-100"」Bootstrapの時はclassの記述使う。セレクトボックスの内側から広げる感じで横幅を広げた-->
           </select>
         </tr>
         <tr>
-          <th>税抜価格</th>
-          <td><%= f.text_field :price, placeholder: "1000", size: "35" %></td>
+          <th align="left" valign="top">税抜価格</th>
+          <td><%= f.text_field :price, placeholder: "1000", class: "w-100 mb-1" %></td>
         </tr>
 
         <tr>
-          <th>販売ステータス</th>
-          <td><%= f.radio_button :is_active, "true" %>販売中 <%= f.radio_button :is_active, "false" %>販売停止中</td>
+          <th align="left" valign="top">販売ステータス</th>
+          <td><%= f.radio_button :is_active, "true" %>販売中 <%= f.radio_button :is_active, "false", class: "ml-3"%>販売停止中</td>
         </tr>
         <tr>
           <th></th>

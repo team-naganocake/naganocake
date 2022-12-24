@@ -2,7 +2,7 @@
 
 <h2><%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集</h2>
 
-<%= form_with model: @customer, url: admin_path, method: :patch do |f| %>
+<%= form_with model: @customer, url: admin_customer_path, method: :patch do |f| %>
 <!--urlは admin/items#updateのpathを記述(メンター確認済）-->
 
   会員ID<%= @customer.id %>
@@ -23,6 +23,7 @@
   <label>会員ステータス</label>
   <label><%= f.radio_button :is_deleted, "false" %>有効</label>
   <label><%= f.radio_button :is_deleted, "true" %>退会</label>
-  
+
   <%= f.submit '変更を保存', class: "btn btn-secondary" %>
+  <!--updateと遷移なし。Routing Error　No route matches [PATCH] "/admin"-->
 <% end %>

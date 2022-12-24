@@ -1,27 +1,53 @@
-<h1>Admin::Items#new</h1>
+<!--<h5>Admin::Items#new</h5>-->
 
-<%#= flash[:notice]%>
-<h2>商品新規登録</h2>
 
-<%= form_with model: @item, url: admin_items_path, method: :post do |f| %>
-<!--urlはidmin/items#create-->
+<div class="container-fluid">
+  <div class="row mt-2 mb-3">
+    <div class="col-3"></div><div class="col-3"><h4><span style="background-color:#d3d3d3;">商品新規登録</span></h4></div>
+  </div>
 
-    <label>商品画像</label>
-    <%= f.file_field :image, accept: "image/*" %><br>
-    <label>商品名</label>
-    <%= f.text_field :name, placeholder: "商品名" %><br>
-    <label>商品説明</label>
-    <%= f.text_area :introduction, placeholder: "ここに説明文を記述します" %><br>
-    <label>ジャンル</label>
-    <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name) %><br>
-    <!--レイアウト編集時、プルダウンの表示かえる-->
-    <label>税抜価格</label>
-    <%= f.text_field :price, placeholder: "1000" %><br>
-    <!--カンマをつけたりするのは後回し-->
-    <label>販売ステータス</label>
-    <label><%= f.radio_button :is_active, "true" %>販売中</label>
-    <label><%= f.radio_button :is_active, "false" %>販売停止中</label>
+  <center>
+      <table>
+        <%= form_with model: @item, url: admin_items_path, method: :post do |f| %>
+        <!--urlはidmin/items#create-->
+          <tr>
+            <th width="160">商品画像</th>
+            <td><%= f.file_field :image, accept: "image/*" %></td>
+            <!--ここのサイズ変えられない。。後で確認する-->
+          </tr>
+        <tr>
+          <th>商品名</th>
+          <td><%= f.text_field :name, placeholder: "商品名", size: "35"  %></td>
+        </tr>
+        <tr>
+          <th>商品説明</th>
+          <td><%= f.text_area :introduction, placeholder: "ここに説明文を記述します", size: "35x5" %></td>
+          <!--cols="35", size"35", size="縦ｘ横" width="35" これら×-->
+        </tr>
+        <tr>
+          <th>ジャンル</th>
+           <td><%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name), { include_blank: '--選択してください--'} %>
+          </select>
+        </tr>
+        <tr>
+          <th>税抜価格</th>
+          <td><%= f.text_field :price, placeholder: "1000", size: "35" %></td>
+        </tr>
 
-    <%= f.submit '新規登録', class: "btn btn-secondary" %>
+        <tr>
+          <th>販売ステータス</th>
+          <td><%= f.radio_button :is_active, "true" %>販売中 <%= f.radio_button :is_active, "false" %>販売停止中</td>
+        </tr>
+        <tr>
+          <th></th>
+          <td>
+            <div class="actions mt-3">
+              <%= f.submit '新規登録', class: "btn btn-success w-50" %>
+            </div>
+          </td>
+        </tr>
+        <% end %>
+      </table>
+  </center>
 
-<% end %>
+</div>

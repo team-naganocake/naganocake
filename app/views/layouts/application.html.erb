@@ -21,30 +21,32 @@
   <body style="padding-top: 6rem">
   <!--ヘッダーに文字が隠れないように余白の設定-->
     <header>
-      <nav class="fixed-top navbar navbar-expand-lg p-4 navbar-dark" style="background-color: #ffb6c1;" >
+      <nav class="fixed-top navbar navbar-expand-lg p-4 navbar-dark" style="background-color: #ffb6c1;">
     　  <div class="container">
           <div class="row">
             <!--ここの並び順大事！！横幅の適応とかが変わってくる-->
             <!--動的ヘッダーの作成-->
             <% if admin_signed_in? %>
             <!--管理者がログインした時-->
-              <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                  <%= link_to "商品一覧", admin_items_path, class: 'nav-link text-dark'  %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to '会員一覧', admin_customers_path, class: 'nav-link text-dark'  %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to "注文履歴一覧", admin_path, class: 'nav-link text-dark'  %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link text-dark' %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark'  %>
-                </li>
-              </ul>
+
+                <ul class="navbar-nav ml-auto">
+                  <li class="nav-item ml-2">
+                    <%= link_to "商品一覧", admin_items_path, class: "btn btn-outline-danger btn-sm" %>
+                  </li>
+                  <li class="nav-item ml-2">
+                    <%= link_to '会員一覧', admin_customers_path, class: "btn btn-outline-danger btn-sm" %>
+                  </li>
+                  <li class="nav-item ml-2">
+                    <%= link_to "注文履歴一覧", admin_path, class: "btn btn-outline-danger btn-sm" %>
+                  </li>
+                  <li class="nav-item ml-2">
+                    <%= link_to "ジャンル一覧", admin_genres_path, class: "btn btn-outline-danger btn-sm" %>
+                  </li>
+                  <li class="nav-item ml-2">
+                    <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-danger btn-sm"  %>
+                  </li>
+                </ul>
+
               <% elsif customer_signed_in? %>
               <!--顧客がログインしている時-->
                 ようこそ、<%= current_customer.last_name %>さん！

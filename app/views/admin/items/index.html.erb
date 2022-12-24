@@ -34,18 +34,21 @@
               <td><%= item.genre.name %></td>
               <td>
                 <% if item.is_active %>
-                販売中
+                  <font color="#32cd32">販売中</font>
                 <% else %>
-                販売停止中
+                  <font color="#a9a9a9">販売停止中</font>
                 <% end %>
               </td>
             </tr>
           <% end %>
         </tbody>
       </table>
-      </div>
+    </div>
   </center>
+
+  <div class="pagination justify-content-center">
     <!--ページネーション-->
-    <%= paginate @items %>
+　  <%= paginate @items %>
+　</div>
 
 </div>

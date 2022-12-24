@@ -1,26 +1,47 @@
-<h1>Admin::Items#edit</h1>
+<!--<h1>Admin::Items#edit</h1>-->
+<div class="container">
+  <div class="row">
+    <div class="col-3"></div><div class="col-2"><h4><span style="background-color:#d3d3d3;">商品編集</span></h4></div>
+  </div>
 
-<h2>商品編集</h2>
+  <center>
+      <table>
+        <%= form_with model: @item, url: admin_item_path, method: :patch do |f| %>
+          <tr>
+            <th width="160"><label for="inputImage">商品画像</label></th>
+            <td><%= f.file_field:image, accept: "image/*" %></td>
+          </tr>
+          <tr>
+            <th><label for="inputItemName">商品名</label></th>
+            <td><%= f.text_field :name, autofocus: true, id:"inputItemName" %></td>
+          </tr>
+          <tr>
+            <th><label for="introduction">商品説明</label></th>
+            <td><%= f.text_area :introduction, autofocus: true, id:"introduction" %></td>
+          </tr>
+          <tr>
+            <th><label for="inputGenreName">ジャンル</label></th>
+          　<td><%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name) %></td>
+          </tr>
+          <tr>
+          　<th><label for="price">税抜価格</label></th>
+          　<td><%= f.text_field :price, autofocus: true, id:"price" %>円</td>
+          </tr>
+          <tr>
+          　<th><label>販売ステータス</label></th>
+            <td><label><%= f.radio_button :is_active, "true" %>販売中</label>
+            <label><%= f.radio_button :is_active, "false" %>販売停止中</label></td>
+          </tr>
+          <tr>
+            <th></th>
+            <td>
+              <div class="actions mt-3">
+                <%= f.submit '変更を保存', class: "btn btn-success" %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+  </center>
 
-<%= form_with model: @item, url: admin_item_path, method: :patch do |f| %>
-
-  <label for="inputImage">商品画像</label>
-  <%= f.file_field:image, accept: "image/*" %><br>
-  <label for="inputItemName">商品名</label>
-  <%= f.text_field :name, autofocus: true, id:"inputItemName" %><br>
-  <label for="introduction">商品説明</label>
-  <%= f.text_area :introduction, autofocus: true, id:"introduction" %><br>
-  <label for="inputGenreName">ジャンル</label>
-　<%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name) %><br>
-　<label for="price">税抜価格</label>
-　<%= f.text_field :price, autofocus: true, id:"price" %>円<br>
-　<label>販売ステータス</label>
-  <label><%= f.radio_button :is_active, "true" %>販売中</label>
-  <label><%= f.radio_button :is_active, "false" %>販売停止中</label>
-
-  <%= f.submit '変更を保存', class: "btn btn-secondary" %>
-
-
-  <!--, placeholder: @item.nameなどは書かなかった。ノート6で書いてあるけどこれ必要？-->
-
-<% end %>
+</div>

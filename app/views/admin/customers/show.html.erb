@@ -2,56 +2,57 @@
 
 <div class="container">
   <div class="row mb-4">
-    <div class="col-2"></div>
      <div class="col-8"><h4><span style="background-color:#d3d3d3;"><%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細</span></h4></div>
   </div>
 
 
-<table>
-  <tr>
-    <th>会員ID</th>
-    <td><%= @customer.id %></td>
-  </tr>
-  <tr>
-    <th>氏名</th>
-    <td><%= @customer.last_name %>　<%= @customer.first_name %></td>
-  </tr>
-  <tr>
-    <th>フリガナ</th>
-    <td><%= @customer.last_name_kana %>　<%= @customer.first_name_kana %></td>
-  </tr>
-  <tr>
-    <th>郵便番号</th>
-    <td><%= @customer.postal_code %></td>
-  </tr>
-  <tr>
-    <th>住所</th>
-    <td><%= @customer.address %></td>
-  </tr>
-  <tr>
-    <th>電話番号</th>
-    <td><%= @customer.telephone_number %></td>
-  </tr>
-  <tr>
-    <th>メールアドレス</th>
-    <td><%= @customer.email %></td>
-  </tr>
-  <tr>
-    <th>会員ステータス</th>
-    <td>
-    <% if @customer.is_deleted %>
-    退会
-    <% else %>
-    有効
-    <% end %>
-    </td>
-  </tr>
-</table>
-
-<!--admin/customers#editに遷移-->
-<%= link_to "編集する", edit_admin_customer_path(@customer.id) %>
-
-<!--Topページ(注文履歴一覧へ)-->
-<%= link_to "注文履歴一覧を見る", admin_path %>
-
+  <table>
+    <tr>
+      <th width="170">会員ID</th>
+      <td><%= @customer.id %></td>
+    </tr>
+    <tr>
+      <th>氏名</th>
+      <td><%= @customer.last_name %>　<%= @customer.first_name %></td>
+    </tr>
+    <tr>
+      <th>フリガナ</th>
+      <td><%= @customer.last_name_kana %>　<%= @customer.first_name_kana %></td>
+    </tr>
+    <tr>
+      <th>郵便番号</th>
+      <td><%= @customer.postal_code %></td>
+    </tr>
+    <tr>
+      <th>住所</th>
+      <td><%= @customer.address %></td>
+    </tr>
+    <tr>
+      <th>電話番号</th>
+      <td><%= @customer.telephone_number %></td>
+    </tr>
+    <tr>
+      <th>メールアドレス</th>
+      <td><%= @customer.email %></td>
+    </tr>
+    <tr>
+      <th>会員ステータス</th>
+      <td>
+      <% if @customer.is_deleted %>
+      <font color="#a9a9a9">退会</font>
+      <% else %>
+      <font color="#32cd32">有効</font>
+      <% end %>
+      </td>
+    </tr>
+    <tr>
+      <th></th>
+      <td>
+        <!--admin/customers#editに遷移-->
+        <%= link_to "編集する", edit_admin_customer_path(@customer.id), class: "btn btn-success w-10 mt-3" %>
+        <!--Topページ(注文履歴一覧へ)-->
+        <%= link_to "注文履歴一覧を見る", admin_path, class:"btn btn-primary w-15 ml-5 mt-3" %>
+      </td>
+    </tr>
+  </table>
 </div>

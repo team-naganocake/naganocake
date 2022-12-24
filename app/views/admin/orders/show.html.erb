@@ -1,88 +1,111 @@
-<h5>Admin::Orders#show</h5>
+<!--<h5>Admin::Orders#show</h5>-->
 
-<h3>注文履歴詳細</h3>
+<div class="container">
+  <div class="row mb-2">
+    <div class="col-2"><h4><span style="background-color:#d3d3d3;">注文履歴詳細</span></h4></div>
+  </div>
 
-<table>
-  <tr>
-    <th>購入者</th>
-    <td><%= @order.customer.last_name %> <%= @order.customer.first_name %></td>
-    <!--ここも名前クリックしたら会員詳細に遷移できるようにする-->
-  </tr>
-  <tr>
-    <th>注文日</th>
-    <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
-  </tr>
-  <tr>
-    <th>配送先</th>
-    <td><%= @order.address %></td>
-  </tr>
-  <tr>
-    <th>支払方法</th>
-    <td><%= @order.payment_method_i18n %></td>
-  </tr>
-  <tr>
-    <th>注文ステータス</th>
-    <td>
-      <%= form_with model: @order, url:admin_order_path do |f| %>
 
-        <%#= f.select :status, ["入金待ち": 0, "入金確認": 1, "製作中":2, "発送準備中":3, "発送済み": 4] %>
-        <!--こういうふうに書いてあるのもあったけど、これだとセレクトボックスの表示が変になった-->
-        <%= f.select :status, Order.statuses_i18n.keys.map {|k| [Order.statuses_i18n[k], k]} %>
-        <%= f.submit "更新", class: 'btn btn-primary' %>
-      <% end %>
-    </td>
-  </tr>
-</table>
+  <div class="row">
+    <table>
+      <tr>
+        <th width="170">購入者</th>
+        <%#= @order.customer.last_name %> <%#= @order.customer.first_name %>
+        <td>
+          <%= link_to (@order.customer.last_name + @order.customer.first_name), admin_customer_path(@order.customer.id) %>
+        </td>
+        <!--ここも名前クリックしたら会員詳細に遷移できるようにする-->
+      </tr>
+      <tr>
+        <th>注文日</th>
+        <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+      </tr>
+      <tr>
+        <th>配送先</th>
+        <td>
+          <%= @order.postal_code %> <%= @order.address %><br>
+          <%= @order.name %>
+        </td>
+      </tr>
+      <tr>
+        <th>支払方法</th>
+        <td><%= @order.payment_method_i18n %></td>
+      </tr>
+      <tr>
+        <th>注文ステータス</th>
+        <td>
+          <%= form_with model: @order, url:admin_order_path do |f| %>
 
-<br>
+            <%#= f.select :status, ["入金待ち": 0, "入金確認": 1, "製作中":2, "発送準備中":3, "発送済み": 4] %>
+            <!--こういうふうに書いてあるのもあったけど、これだとセレクトボックスの表示が変になった-->
+            <%= f.select :status, Order.statuses_i18n.keys.map {|k| [Order.statuses_i18n[k], k]} %>
+            <%= f.submit "更新", class: 'btn btn-success btn-sm ml-3' %>
+          <% end %>
+        </td>
+      </tr>
+    </table>
+  </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>商品名</th>
-      <th>単価(税込)</th>
-      <th>数量</th>
-      <th>小計</th>
-      <th>製作ステータス</th>
-    </tr>
-  </thead>
+  <div class="row mt-4" style="width: 120%">
+    <div class="col-7">
+      <table class="table table-sm">
+        <thead class="thead-light">
+          <tr>
+            <th>商品名</th>
+            <th>単価(税込)</th>
+            <th width="60">数量</th>
+            <th width="60">小計</th>
+            <th>製作ステータス</th>
+          </tr>
+        </thead>
+      </div>
 
-  <tbody>
-    <% @order_details.each do |order_detail| %>
 
-    <tr>
-      <td><%= order_detail.item.name %></td>
-      <td><%= order_detail.item.with_tax_price %></td>
-      <td><%= order_detail.amount %></td>
-      <td><%= order_detail.item.with_tax_price * order_detail.amount %></td>
-      <!--.to_s(:delimited)つけるとString can't be coerced into Integerのエラーが。。計算がカラムと×-->
-      <td>
-        <!--製作ステータス関連-->
-        <%= form_with model: order_detail, url: admin_order_path(order_detail), method: :patch do |f| %>
-          <%= f.select :making_status, OrderDetail.making_statuses_i18n.keys.map {|k| [OrderDetail.making_statuses_i18n[k], k]} %>
-          <!--mapで配列の中から一つずつ取りだしている-->
-          <%= f.submit "更新" %>
-        <% end %>
-      </td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+        <tbody>
+          <div class="col-5">
+            <% @order_details.each do |order_detail| %>
+            <tr>
+              <td><%= order_detail.item.name %></td>
+              <td><%= order_detail.item.with_tax_price %></td>
+              <td><%= order_detail.amount %></td>
+              <td><%= order_detail.item.with_tax_price * order_detail.amount %></td>
+              <!--.to_s(:delimited)つけるとString can't be coerced into Integerのエラーが。。計算がカラムと×-->
+              <td>
+                <!--製作ステータス関連-->
+                <%= form_with model: order_detail, url: admin_order_path(order_detail), method: :patch do |f| %>
+                  <%= f.select :making_status, OrderDetail.making_statuses_i18n.keys.map {|k| [OrderDetail.making_statuses_i18n[k], k]} %>
+                  <!--mapで配列の中から一つずつ取りだしている-->
+                  <%= f.submit "更新", class: "btn btn-success btn-sm ml-3" %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+          </div>
+        </tbody>
+      </table>
+    </div>
 
-<br>
-<table>
-  <tr>
-    <th>商品合計</th>
-    <td><%= @order.total_payment - @order.shipping_cost %>円</td>
-    <!--.to_s(:delimited)つけるとエラーでる-->
-  </tr>
-  <tr>
-    <th>送料</th>
-    <td><%= @order.shipping_cost %>円</td>
-  </tr>
-  <tr>
-    <th>請求金額合計</th>
-    <td><%= @order.total_payment.to_s(:delimited) %>円</td>
-    <!--public/orders/confirm.htmlでtotal_paymentと名前をつけて、hidden_fieldで数値を送ってる-->
-  </tr>
-</table>
+
+
+    <div class="col align-self-end ml-5">
+    <!--align-self-endで右下に寄せ(Bootstrapのシステム)-->
+      <table>
+        <tr>
+          <th width="120">商品合計</th>
+          <td class="text-right"><%= @order.total_payment - @order.shipping_cost %>円</td>
+          <!--.to_s(:delimited)つけるとエラーでる-->
+        </tr>
+        <tr>
+          <th>送料</th>
+          <td class="text-right"><%= @order.shipping_cost %>円</td>
+        </tr>
+        <tr>
+          <th>請求金額合計</th>
+          <td class="text-right"><%= @order.total_payment.to_s(:delimited) %>円</td>
+          <!--public/orders/confirm.htmlでtotal_paymentと名前をつけて、hidden_fieldで数値を送ってる-->
+        </tr>
+      </table>
+    </div>
+  </div>
+
+</div>

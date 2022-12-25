@@ -1,5 +1,23 @@
 Rails.application.routes.draw do
 
+  # 【顧客用】
+  # URL /customers/sign_in ...
+  devise_for :customers,skip: [:passwords], controllers: {
+  registrations: "public/registrations",
+  sessions: 'public/sessions'
+  }
+
+  # 【管理者用】
+  # URL /admin/sign_in ...
+  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
+  sessions: "admin/sessions"
+  }
+
+  root to: "public/homes#top"
+  get '/about' => "public/homes#about", as:'about'
+
+
+
   namespace :admin do
     #【admin/ordersコントローラー】
     resources :orders, only:[:show, :update]
@@ -78,21 +96,21 @@ Rails.application.routes.draw do
   # devise_for :customers（下記のように書き換え）
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  # 【顧客用】
-  # URL /customers/sign_in ...
-  devise_for :customers,skip: [:passwords], controllers: {
-  registrations: "public/registrations",
-  sessions: 'public/sessions'
-  }
+  # # 【顧客用】ここから下上に移動した
+  # # URL /customers/sign_in ...
+  # devise_for :customers,skip: [:passwords], controllers: {
+  # registrations: "public/registrations",
+  # sessions: 'public/sessions'
+  # }
 
-  # 【管理者用】
-  # URL /admin/sign_in ...
-  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
-  sessions: "admin/sessions"
-  }
+  # # 【管理者用】
+  # # URL /admin/sign_in ...
+  # devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
+  # sessions: "admin/sessions"
+  # }
 
-  root to: "public/homes#top"
-  get '/about' => "public/homes#about", as:'about'
+  # root to: "public/homes#top"
+  # get '/about' => "public/homes#about", as:'about'
 
   #同じpathでメソッドが同じ場合は、名前付きルートにするか、resourcesで書くようにする
   #顧客側のURLで:idがつかないようにしているのは他人の画面に簡単にログインできないようにするため。他に制限をかける方法もあるが…

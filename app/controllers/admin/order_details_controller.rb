@@ -1,9 +1,9 @@
 class Admin::OrderDetailsController < ApplicationController
 
   def update
-    #@order = @order_detail.order ネットのどこかでこれを見かけたが…Bookersと同じシステム
     @order_detail = OrderDetail.find(params[:id])
     @order = @order_detail.order
+    #bookersと同じようなイメージ。@book.user/@user.book
     @order_details = @order.order_details.all
     @order_detail.update(order_detail_params)
 

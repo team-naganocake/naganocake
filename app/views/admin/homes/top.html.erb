@@ -30,7 +30,7 @@
             <!--amountだけだとエラーがでる。order確定時、個数の合算値は求めていない-->
             <!--金額求める際にtotal=0を定義して、その箱の中にeach文を使って金額を入れて足していった。public/cart_items#index-->
             <!--金額の場合は税込みにする計算とか設定していたし…使うのは難しそう。。単純に数足すぐらいだったら.sum(:amount)-->
-            <td><%#= order.status %></td>
+            <td><%= order.status_i18n %></td>
           </tr>
         <% end %>
       </tbody>

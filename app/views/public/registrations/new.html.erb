@@ -1,72 +1,98 @@
-<h2>新規会員登録（sign_up）</h2>
-
-<!--ここをform_withにしようとすると色が変わらない。何故？？-->
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "public/shared/error_messages", resource: resource %>
-
-  <!--autocomplete：入力の自動補完-->
-  <!--autofocus:入力する時に、枠が強調される。パスワードの所はautofocusの機能がないが強調される。何故？-->
-  <!--どうしてタイトルの行にf.labelが必要なのか？-->
-
-  <div class="field">
-    <%= f.label :last_name, "名前（性）" %>
-    <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
-    <%= f.label :first_name, "（名）" %>
-    <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
+<div class="container">
+  <div class="row mb-1">
+    <div class="col-1"></div><div class="col-11 ml-3"><h4><span style="background-color:#d3d3d3;">新規会員登録（sign_up）</span></h4></div>
   </div>
 
-  <div class="field">
-    <%= f.label :last_name_kana, "フリガナ（セイ）" %>
-    <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name" %>
-    <%= f.label :first_name_kana, "（メイ）" %>
-    <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name" %>
-  </div>
+  <table>
+    <!--ここをform_withにしようとすると色が変わらない。色関係ない。ただ色が変わる設定にところどころなってるだけ-->
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <!--エラーメッセージ-->
+      <%= render "public/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email, "メールアドレス" %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :postal_code, "郵便番号（ハイフンなし）" %>
-    <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code" %>
-    <!--Qf.number_fieldにしたらどうなるか？今度確認してみる-->
-  </div>
-
-  <div class="field">
-    <%= f.label :address, "住所" %>
-    <%= f.text_field :address, autofocus: true, autocomplete: "address" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :telephone_number, "電話番号（ハイフンなし）" %>
-    <%= f.text_field :telephone_number, autofocus: true, autocomplete: "telephone_number" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password, "パスワード" %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> 文字以上)</em>
+      <!--autocomplete：入力の自動補完-->
+      <!--autofocus:入力する時に、枠が強調される。パスワードの所はautofocusの機能がないが強調される。何故？-->
+      <!--どうしてタイトルの行にf.labelが必要なのか？-->
+    <tr>
+      <div class="field">
+        <th width="220"><%= f.label :last_name, "名前（性）" %></th>
+        <td>
+          <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
+          <%= f.label :first_name, "（名）" %>
+          <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
+        </td>
+      </div>
+    </tr>
+    <tr>
+      <div class="field">
+        <th><%= f.label :last_name_kana, "フリガナ（セイ）" %></th>
+        <td>
+          <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name" %>
+          <%= f.label :first_name_kana, "（メイ）" %>
+          <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name" %>
+        </td>
+      </div>
+    </tr>
+    <tr>
+      <div class="field">
+        <th><%= f.label :email, "メールアドレス" %></th>
+        <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="field">
+        <th><%= f.label :postal_code, "郵便番号（ハイフンなし）" %></th>
+        <td><%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code" %></td>
+        <!--Qf.number_fieldにしたらどうなるか？今度確認してみる-->
+      </div>
+    </tr>
+    <tr>
+      <div class="field">
+        <th><%= f.label :address, "住所" %></th>
+        <td><%= f.text_field :address, autofocus: true, autocomplete: "address" %></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="field">
+        <th><%= f.label :telephone_number, "電話番号（ハイフンなし）" %></th>
+        <td><%= f.text_field :telephone_number, autofocus: true, autocomplete: "telephone_number" %></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="field">
+        <th>
+          <%= f.label :password, "パスワード" %>
+          <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> 文字以上)</em>
+          <% end %>
+        </th>
+        <td><%= f.password_field :password, autocomplete: "new-password" %></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="field">
+        <th><%= f.label :password_confirmation, "パスワード（確認用）" %></th>
+        <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="actions">
+        <th></th>
+        <td><%= f.submit "新規登録", class: "btn btn-success btn-sm w-50 mt-2" %></td>
+        <!--新規登録ボタン押したら、マイページへ-->
+      </div>
+    </tr>
     <% end %>
-    <%= f.password_field :password, autocomplete: "new-password" %>
+  </table>
+
+
+  <div class="row mb-2 mt-4">
+    <div class="col-11"><h4><span style="background-color:#d3d3d3;">既に登録済みの方</span></h4></div>
+    <div class="text-left ml-4"><%= render "public/shared/links" %>からログインしてください。</div>
+    <!--view/public/shared/_link.html.erbの記載を”こちら”に変更した-->
+    <!--最初は↓これだけが書かれていた。ここの表示を編集する-->
+    <%#= render "public/shared/links" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation, "パスワード（確認用）" %>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "新規登録" %>
-    <!--新規登録ボタン押したら、マイページへ-->
-  </div>
-<% end %>
+</div>
 
 
-<h3>既に登録済みの方</h3>
-<%= render "public/shared/links" %>からログインしてください。
-<!--view/public/shared/_link.html.erbの記載を”こちら”に変更した-->
-
-
-<!--最初は↓これだけが書かれていた。ここの表示を編集する-->
-<%#= render "public/shared/links" %>

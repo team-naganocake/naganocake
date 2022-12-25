@@ -73,6 +73,7 @@
               <td>
                 <!--製作ステータス関連-->
                 <%= form_with model: order_detail, url: admin_order_detail_path(order_detail), method: :patch do |f| %>
+                <!--urlは、admin/order_details#update-->
                   <%= f.select :making_status, OrderDetail.making_statuses_i18n.keys.map {|k| [OrderDetail.making_statuses_i18n[k], k]} %>
                   <!--mapで配列の中から一つずつ取りだしている-->
                   <%= f.submit "更新", class: "btn btn-success btn-sm ml-3" %>

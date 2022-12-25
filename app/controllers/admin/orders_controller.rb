@@ -6,7 +6,6 @@ class Admin::OrdersController < ApplicationController
   end
 
   def update
-  #製作ステータス関連
     @order = Order.find(params[:id])
     @order.update(order_params)
     @order_details = @order.order_details
@@ -17,9 +16,18 @@ class Admin::OrdersController < ApplicationController
       @order_details.each do |order_detail|
         order_detail.making_status = "production_pending"
         order_detail.save
-      ##注文ステータス(staus)が「入金確認(payment_confirmation)」のとき、製作ステータスを全て「製作待ち（production_pending）」に自動更新する
-      ##でも変更ボタンは押さなきゃいけない
+      #1．注文ステータスを[入金待ちpayment_waiting]から[入金確認payment_confirmation]へ更新した際に、
+      #製作ステータスを自動的に[着手不可production_not_possible]から[製作待ちproduction_pending]に更新させる。
+      #でも更新ボタンは押さなきゃいけない
       end
+
+  #上の省略バージョン。本来はeachでとりだしてる。これでもOK
+  #   if @order.status == "payment_confirmation"
+  #     # 紐づく注文ステータスが「入金確認」に更新されていたら
+  #     @order_details.update_all(making_status: "production_pending")
+  #     # 制作ステータスを全商品「製作待ち」に更新
+  # 　end
+
     end
     redirect_to admin_order_path
     #admin/orders#show

@@ -1,28 +1,43 @@
-<h1>Public::Items#show</h1>
+<!--<h1>Public::Items#show</h1>-->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3 mt-3">
+      <div class="border border-dark d-inline-block p-4">
+        <span class="border-bottom border-dark">ジャンル検索</span><br>
+          <% @genres.each do |genre| %>
+            <%= link_to genre.name, items_path(genre_id: genre.id) %><br>
+              <!--idを指定して取り出したい時は↑こういう書き方になる？-->
+              <!--(genre_id: genre.id)これ書かないとエラー出る。
+              genre_idで検索をかけて、その中(左側のgenre_id)からgenre.idというのを探す。数に例えると分かりやすい-->
+          <% end %>
+      </div>
+    </div>
 
-ジャンル検索<br>
-<% @genres.each do |genre| %>
-    <%= link_to genre.name, items_path(genre_id: genre.id) %><br>
-    <!--idを指定して取り出したい時は↑こういう書き方になる？-->
-    <!--(genre_id: genre.id)これ書かないとエラー出る。genre.idを指定することでジャンル分けするみたいな？-->
-<% end %>
+    <div class="col-lg-3 mt-3">
+      <%= image_tag @item.image, size: "200x160" %>
+    </div>
 
+    <div class="col-lg-6 mt-3">
+      <h2><strong><%= @item.name %></strong></h2>
+      <h4><%= @item.introduction %></h4>
+      <div class="mt-5">
+        <h3>￥<%= (@item.price*1.1).floor.to_s(:delimited) %><span style="font-size:small;">（税込）</span></h3>
+      </div>
 
-<%= image_tag @item.image, size: "190x150" %>
-<h2><%= @item.name %></h2>
-<h3><%= @item.introduction %></h3>
-<h2>￥<%= (@item.price*1.1).floor %>(税込）</h2>
+      <%= form_with model: @cart_item, url:cart_items_path, method: :post do |f| %>
+      <!--urlはpublic/cart_items#create-->
+        <%= f.hidden_field :item_id, :value => @item.id %>
+        <%#= f.hidden_field :image, :value => @item.image %>
+        <%#= f.hidden_field :name, :value => @item.name %>
+        <%#= f.hidden_field :price, :value => (@item.price*1.1).floor %>
+        <!--この情報は引き渡さなくてもアソシエーションで取ってくることができる-->
+        <%= f.select :amount, *[1..10], { include_blank: '個数選択'} %>
+        <!--個数を選択しない時の設定が必要-->
+        <%= f.submit 'カートに入れる', class: "btn btn-success btn-sm w-40 ml-3" %>
+      <% end %>
+    </div>
 
-
-<%= form_with model: @cart_item, url:cart_items_path, method: :post do |f| %>
-<!--urlはpublic/cart_items#create-->
-  <%= f.hidden_field :item_id, :value => @item.id %>
-  <%#= f.hidden_field :image, :value => @item.image %>
-  <%#= f.hidden_field :name, :value => @item.name %>
-  <%#= f.hidden_field :price, :value => (@item.price*1.1).floor %>
-  <!--この情報は引き渡さなくてもアソシエーションで取ってくることができる-->
-  <%= f.select :amount, *[1..10] %>
-  <%= f.submit 'カートに入れる' %>
-<% end %>
+  </div>
+</div>
 
 

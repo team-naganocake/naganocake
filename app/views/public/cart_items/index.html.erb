@@ -1,62 +1,92 @@
-<h1>Public::CartItems#index</h1>
+<!--<h1>Public::CartItems#index</h1>-->
+<div class="container">
+  <div class="row">
 
-<h2>ショッピングカート</h2>
+    <center>
+      <div class="text-right">
+        <%= link_to 'カートを空にする', cart_items_destroy_all_path, method: :delete, class: "btn btn-danger btn-sm" %>
+      </div>
 
-<%#= link_to 'カートを空にする', cart_items_destroy_all_path, method: :delete %>
+      <div class="text-left">
+         <h4><span style="background-color:#d3d3d3; ml-5">ショッピングカート</span></h4>
+        </div>
+      <table border="2">
+        <thead bgcolor="#c0c0c0">
+          <tr>
+            <th colspan="2" width="350">商品名</th>
+            <!--<th width="350">商品名</th>-->
+            <th width="150">単価(税込)</th>
+            <th width="150">数量</th>
+            <th width="150">小計</th>
+            <th width="150"></th>
+          </tr>
+        </thead>
 
- <%# if @cart_item.customer == current_customer ここはなくてもいい%>
-  <%= link_to 'カートを空にする', cart_items_destroy_all_path, method: :delete %>
- <%# end %>
+        <tbody>
+          <% @cart_items.each do |cart_item| %>
+            <% @total = @total + cart_item.subtotal %>
+            <tr>
+              <td colspan="2">
+                <div class="ml-2">
+                  <%= image_tag cart_item.item.image, size: "70x50" %>
+                  　<%= cart_item.item.name %>
+                </div>
+              </td>
+              <td><%= cart_item.item.with_tax_price.to_s(:delimited) %></td>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="2">商品名</th>
-      <th>単価(税込)</th>
-      <th>数量</th>
-      <th>小計</th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @cart_items.each do |cart_item| %>
-
-      <% @total = @total + cart_item.subtotal %>
-
-      <tr>
-        <td><%= image_tag cart_item.item.image, size: "70x50" %></td>
-        <td><%= cart_item.item.name %></td>
-        <td><%= cart_item.item.with_tax_price.to_s(:delimited) %></td>
-        <td>
-          <%= form_with model: cart_item, url:cart_item_path(cart_item.id), method: :patch do |f| %>
-          <!--urlはpublic/cart_items#update-->
-             <%= f.select :amount, *[1..10] %>
-            <%= f.submit '変更' %>
-          <% end %>
-        </td>
-        <td><%= cart_item.subtotal.to_s(:delimited) %></td>
-        <td>
-          <%# if cart_item.customer == current_customer 今回はいらない%>
-            <%= link_to '削除する', cart_item_path(cart_item.id), method: :delete %>
-          <%# end %>
-        </td>
-        <!--試しに部ifの部分をコントローラに書いてみたけど、それでも問題なかった-->
-      </tr>
-  　<% end %>
-  </tbody>
-</table>
-
-<table>
-  <tr>
-    <th>合計金額</th>
-    <td><%= @total.to_s(:delimited) %></td>
-  </tr>
-</table>
+              <%= form_with model: cart_item, url:cart_item_path(cart_item.id), method: :patch do |f| %>
+              <!--urlはpublic/cart_items#update-->
+              <td style="text-align:center">
+                <%= f.select :amount, *[1..10] %>
+                <%= f.submit '変更', class: "btn btn-success btn-sm" %>
+              <% end %>
+              </td>
+              <td><%= cart_item.subtotal.to_s(:delimited) %></td>
+              <td style="text-align:center">
+                <%# if cart_item.customer == current_customer 今回はいらない%>
+                  <%= link_to '削除する', cart_item_path(cart_item.id), method: :delete, class: "btn btn-danger btn-sm" %>
+                <%# end %>
+              </td>
+              <!--試しに部ifの部分をコントローラに書いてみたけど、それでも問題なかった-->
+            </tr>
+        　<% end %>
+        </tbody>
+      </table>
+      </center>
+    </div>
 
 
-<%= link_to '買い物を続ける', root_path %>
-<!--public/home#topへ-->
 
-<br>
-<%= link_to '情報入力に進む', new_order_path %>
+    <div class="row">
+      <div class="col-lg-2">
+        <div class="text-left mt-3">
+          <%= link_to '買い物を続ける', root_path, class: "btn btn-primary btn-sm" %>
+          <!--public/home#topへ-->
+        </div>
+      </div>
+
+      <div class="col-lg-5">
+        <div class="text-center mt-5">
+          <%= link_to '情報入力に進む', new_order_path, class: "btn btn-success btn-sm" %>
+        </div>
+      </div>
+
+      <div class="col-lg-5">
+        <div class="text-left mt-3">
+          <table border="2">
+            <tr>
+              <th width="130" bgcolor="#c0c0c0">合計金額</th>
+              <td width="130"><%= @total.to_s(:delimited) %></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+</div>
+
+<!--<div class="row">-->
+<!--  <div class="text-center">-->
+<!--<%#= link_to '情報入力に進む', new_order_path, class: "btn btn-success btn-sm" %>-->
+<!-- </div>-->
+<!--</div>-->

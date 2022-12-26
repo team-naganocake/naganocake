@@ -1,15 +1,27 @@
-<h1>Public::Addresses#edit</h1>
+<!--<h1>Public::Addresses#edit</h1>-->
+<div class="container">
+  <div class="row mb-2 mt-2">
+    <div class="col-3"><h4><span style="background-color:#d3d3d3;">配送先編集</span></h4></div>
+  </div>
 
-<h2>配送先編集</h2>
+  <table>
+    <%= form_with model: @address, url: address_path, method: :patch do |f| %>
+      <tr>
+        <th width="200"><label for="postal_code">郵便番号(ハイフンなし)</label></th>
+        <td><%= f.text_field :postal_code, autofocus: true, id:"postal_code" %></td>
+      </tr>
+      <tr>
+        <th><label for="address">住所</label></th>
+        <td><%= f.text_field :address, autofocus: true, id:"address", size: "70" %></td>
+      </tr>
+      <tr>
+        <th><label for="name">宛名</label></th>
+        <td>
+          <%= f.text_field :name, autofocus: true, id:"name", class: "mr-5" %>
+          <%= f.submit '変更内容を保存', class: "btn btn-success btn-sm ml-5" %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
 
-<%= form_with model: @address, url: address_path, method: :patch do |f| %>
-<label for="postal_code">郵便番号(ハイフンなし)</label>
-<%= f.text_field :postal_code, autofocus: true, id:"postal_code" %><br>
-<label for="address">住所</label>
-<%= f.text_field :address, autofocus: true, id:"address" %><br>
-<label for="name">宛名</label>
-<%= f.text_field :name, autofocus: true, id:"name" %><br>
-
-<%= f.submit '変更内容を保存', class: "btn btn-secondary" %>
-
-<% end %>
+</div>

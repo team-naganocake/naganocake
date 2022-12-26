@@ -1,15 +1,20 @@
-<h1>Public::Orders#index</h1>
+<!--<h1>Public::Orders#index</h1>-->
 
-<h3>注文履歴一覧</h3>
-<table>
-  <thead>
+<div class="container">
+  <div class="row mb-2">
+    <div class="col-3"><h4><span style="background-color:#d3d3d3;">注文履歴一覧</span></h4></div>
+  </div>
+
+
+<table border="2">
+  <thead bgcolor="#d3d3d3">
     <tr>
-      <th>注文日</th>
-      <th>配送先</th>
-      <th>注文商品</th>
-      <th>支払金額</th>
-      <th>ステータス</th>
-      <th>注文詳細</th>
+      <th width="100">注文日</th>
+      <th width="300">配送先</th>
+      <th width="250">注文商品</th>
+      <th width="90">支払金額</th>
+      <th width="100">ステータス</th>
+      <th width="120">注文詳細</th>
     </tr>
   </thead>
 
@@ -19,7 +24,7 @@
         <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
         <!--デフォルトnowの設定必要？今は入れてないけど…-->
         <td>
-          <%= order.postal_code %><br>
+          〒<%= order.postal_code %><br>
           <%= order.address %><br>
           <%= order.name %>
         </td>
@@ -31,8 +36,10 @@
         </td>
         <td><%= order.total_payment.to_s(:delimited) %>円</td>
         <!--public/order#confirmで定義はしてないけど、total_paymentという名前を付けてデータを送った-->
-        <td>ステータス表示させる()</td>
-        <td><%= link_to "表示する", order_path(order.id) %></td>
+        <td><%= order.status_i18n %></td>
+        <td style="text-align:center">
+          <%= link_to "表示する", order_path(order.id), class: "btn btn-primary btn-sm" %>
+        </td>
       </tr>
     <% end %>
   </tbody>

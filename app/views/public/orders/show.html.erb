@@ -6,57 +6,62 @@
   </div>
 
   <div class="row">
-    <h5>注文情報</h5>
-      <table>
+    <div>
+      <h5>注文情報</h5>
+      <table border="2">
         <tr>
-          <th>注文日</th>
-          <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+          <th width="100" bgcolor="#d3d3d3">注文日</th>
+          <td width="380"><%= @order.created_at.strftime('%Y/%m/%d') %></td>
         </tr>
         <tr>
-          <th>配送先</th>
+          <th bgcolor="#d3d3d3">配送先</th>
           <td>〒<%= @order.postal_code %><br>
           <%= @order.address %><br>
           <%= @order.name %></td>
         </tr>
         <tr>
-          <th>支払方法</th>
+          <th bgcolor="#d3d3d3">支払方法</th>
           <td><%= @order.payment_method_i18n %></td>
         </tr>
         <tr>
-          <th>ステータス</th>
+          <th bgcolor="#d3d3d3">ステータス</th>
           <td><%= @order.status_i18n %></td>
-        </tr>
-      </table>
-
-    <h5>請求情報</h5>
-      <table>
-        <tr>
-          <th>商品合計</th>
-          <td><%= (@order.total_payment - @order.shipping_cost).to_s(:delimited) %></td>
-          <!--public/orders#confirm.htmlの時、total_paymentという名前をつけて、注文確定(public/orders#create)をしてhidden_fieldでデータを送っている-->
-          <!--その送られてきた情報をもとに商品合計をもとめる-->
-        </tr>
-        <tr>
-          <th>送料</th>
-          <td><%= @order.shipping_cost %></td>
-        </tr>
-        <tr>
-          <th>ご請求額</th>
-          <td><%= @order.total_payment.to_s(:delimited) %></td>
         </tr>
       </table>
     </div>
 
+    <div class="ml-5">
+      <h5>請求情報</h5>
+      <table border="2" height="100">
+        <tr>
+          <th width="110" bgcolor="#d3d3d3">商品合計</th>
+          <td width="90"><%= (@order.total_payment - @order.shipping_cost).to_s(:delimited) %></td>
+          <!--public/orders#confirm.htmlの時、total_paymentという名前をつけて、注文確定(public/orders#create)をしてhidden_fieldでデータを送っている-->
+          <!--その送られてきた情報をもとに商品合計をもとめる-->
+        </tr>
+        <tr>
+          <th bgcolor="#d3d3d3">送料</th>
+          <td><%= @order.shipping_cost %></td>
+        </tr>
+        <tr>
+          <th bgcolor="#d3d3d3">ご請求額</th>
+          <td><%= @order.total_payment.to_s(:delimited) %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
 
-  <div class="row">
+
+  <div class="row mt-4">
+    <div>
     <h5>注文情報</h5>
-      <table>
-        <thead>
+      <table border="2">
+        <thead bgcolor="#d3d3d3">
           <tr>
-            <th>商品</th>
-            <th>単価（税込）</th>
-            <th>個数</th>
-            <th>小計</th>
+            <th width="380">商品</th>
+            <th width="100">単価（税込）</th>
+            <th width="80">個数</th>
+            <th width="80">小計</th>
           </tr>
         </thead>
 
@@ -73,6 +78,6 @@
           <% end %>
         </tbody>
       </table>
-  </div>
+    </div>
 
 </div>

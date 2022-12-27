@@ -54,7 +54,7 @@
 
   <div class="row mt-4">
     <div>
-    <h5>注文情報</h5>
+    <h5>注文内容</h5>
       <table border="2">
         <thead bgcolor="#d3d3d3">
           <tr>
@@ -69,9 +69,9 @@
           <% @order_details.each do |order_detail| %>
             <tr>
               <td><%= order_detail.item.name %></td>
-              <td><%= order_detail.item.with_tax_price %></td>
+              <td><%= order_detail.item.with_tax_price.to_s(:delimited) %></td>
               <td><%= order_detail.amount %></td>
-              <td><%= (order_detail.item.with_tax_price * order_detail.amount).floor.to_s(:delimited)%></td>
+              <td><%= (order_detail.item.with_tax_price * order_detail.amount).floor.to_s(:delimited) %></td>
               <%#= order_detail.cart_item.subtotal.to_s(:delimited) これはダメ。アソシエーションの設定してないし…%>
               <!--item.with_tax_priceとsubtotalは、itemモデルとcart_itemモデルに定義してある-->
             </tr>

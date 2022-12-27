@@ -21,11 +21,17 @@
   <body style="padding-top: 6rem">
   <!--ヘッダーに文字が隠れないように余白の設定-->
     <header>
-      <nav class="fixed-top navbar navbar-expand-lg p-4 navbar-dark" style="background-color: #ffb6c1;">
+      <nav class="fixed-top navbar navbar-expand-lg p-1 navbar-dark" style="background-color: #ffb6c1;">
     　  <div class="container">
           <div class="row">
-            <!--ここの並び順大事！！横幅の適応とかが変わってくる-->
-            <!--動的ヘッダーの作成-->
+            <div class="col-1">
+            <%= link_to root_path do %>
+              <%= image_tag('logo.jpg', size: "80x80") %>
+            <% end %>
+            </div>
+          </div>
+
+
             <% if admin_signed_in? %>
             <!--管理者がログインした時-->
 
@@ -49,7 +55,11 @@
 
               <% elsif customer_signed_in? %>
               <!--顧客がログインしている時-->
+              <div class="col-6" align="right">
                 ようこそ、<%= current_customer.last_name %>さん！
+              </div>
+
+
               <!--mlはmargin-leftという意味。左に余白ができて、右寄せになる.Q適応されないなんで？-->
               <ul class="navbar-nav ml-auto">
                 <li class="nav-item ml-2">
@@ -65,6 +75,7 @@
                   <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "btn btn-outline-danger btn-sm"  %>
                 </li>
               </ul>
+              </div>
               <% else %>
               <!--管理者・顧客がログインしていない時-->
               <ul class="navbar-nav ml-auto">

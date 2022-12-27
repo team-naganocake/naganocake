@@ -34,7 +34,7 @@
               <%= image_tag item.image, size: "170x130" %><br>
             <% end %>
             <%= item.name %><br>
-            ￥<%= (item.price*1.1).floor %>
+            ￥<%= (item.price*1.1).floor.to_s(:delimited) %>
           </div>
         <% end %>
         <!--No-imageの場合については未設定-->

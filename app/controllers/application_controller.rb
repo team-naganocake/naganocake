@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
       admin_path
       #注文一覧（管理者TOP）画面へ
     else customer_signed_in?
-      root_path #エンドユーザー側のTOP画面へ
+      customers_my_page_path #エンドユーザー側のマイページへ
     end
   end
 

@@ -15,26 +15,28 @@
     </div>
 
     <div class="col-lg-9">
+
       <center>
-        <div class="mt-4">
-          <h5>
+        <div class="mt-1">
+          <%= image_tag "top.cake.jpg", size: "550x220" %>
+          <h6 class="text">
           ようこそ、ながのCAKEへ！<br>
           このサイトは、ケーキ販売のECサイトになります。<br>
           会員でない方も商品の閲覧はできますが、<br>
           購入には会員登録が必要になります。
-          </h5>
+          </h6>
         </div>
       </center>
 
 
-      <div class="mt-5"><h3>新着商品</h3></div>
+      <div class="mt-1"><h4>新着商品</h4></div>
         <div class="row">
             <!--div class="d-flex flex-row"は×-いらない->
             <!--d-flexは、画像の水平位置の横並び。tableを使わないと横並びになる。table使うと×-->
               <% @items.each do |item| %>
                <div class="col-lg-3">
                 <%= link_to item_path(item.id) do %>
-                <%= image_tag item.image, size: "190x150" %><br>
+                <%= image_tag item.image, size: "150x110" %><br>
                 <% end %>
                 <span class="text-left d-block"><%= item.name %></span>
                 <span class="text-left d-block">￥<%= (item.price*1.1).floor.to_s(:delimited) %></span>

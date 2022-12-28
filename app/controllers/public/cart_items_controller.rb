@@ -2,6 +2,11 @@ class Public::CartItemsController < ApplicationController
 
   def create
     #【カート商品を追加・保存】
+  #customerがログインしていない時はカートに商品いれられない。
+  #ここで記述することも出来るし、html(public/item#show)に書くことも出来る←これはボタンを表示させない方法
+  #   unless customer_sign_in?(サインインしていなければ…)
+  #     redirect_to ログインページへのパス
+
     @cart_item_new = CartItem.new(cart_items_params)
     @cart_item_new.customer_id = current_customer.id
     if current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id]).present?

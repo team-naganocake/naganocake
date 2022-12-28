@@ -9,3 +9,23 @@
 // .flex {
 //       display: flex;
 //     }
+
+
+// 顧客のログインのfieldの幅調整
+.w-120 {
+  display: inline-block;
+  width: 120px;
+}
+
+
+// Topの画像
+.mt-1 {
+  position: relative;
+}
+
+// Topの画像の位置調整
+.text {
+  position: absolute;
+  top: 5%;
+  left: 20%;
+}

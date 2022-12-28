@@ -65,9 +65,16 @@
         </div>
       </div>
 
+      <!--カートが空の時、注文情報入力画面に進めない、またはリンクを表示しないようにする-->
       <div class="col-lg-5">
         <div class="text-center mt-5">
-          <%= link_to '情報入力に進む', new_order_path, class: "btn btn-success btn-sm" %>
+          <% if @cart_items.present? %>
+            <%= link_to '情報入力に進む', new_order_path, class: "btn btn-success btn-sm" %>
+          <% else %>
+            <%= link_to '情報入力に進む', cart_items_path, class: "btn btn-success btn-sm" %>
+            <!--ここパスだけ変えたけど…なんかセンスない書き方かも…、もっとスマートな書き方はあるか？-->
+          <% end %>
+
         </div>
       </div>
 

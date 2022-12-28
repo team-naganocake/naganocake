@@ -33,7 +33,16 @@
         <!--この情報は引き渡さなくてもアソシエーションで取ってくることができる-->
         <%= f.select :amount, *[1..10], { include_blank: '個数選択'} %>
         <!--個数を選択しない時の設定が必要-->
-        <%= f.submit 'カートに入れる', class: "btn btn-success btn-sm w-40 ml-3" %>
+
+        <% if customer_signed_in? %>
+          <%= f.submit 'カートに入れる', class: "btn btn-success btn-sm w-40 ml-3" %>
+        <% end %>
+      <!--  #customerがログインしていない時はカートに商品いれられない。-->
+      <!--  #ここでログインしている人にしかボタンを表示させないようにする。-->
+      <!--  #＜cart_itemsのcreateコントローラーに下記のように書くこともできる＞-->
+      <!--  #   unless customer_sign_in?-->
+      <!--  #     redirect_to ログインページへのパス-->
+    　　<!--# 【重要ポイント】@customer = current_customer×　そもそもろぐいんしてないとcurrent_customer使えない-->
       <% end %>
     </div>
 

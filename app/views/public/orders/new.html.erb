@@ -35,6 +35,8 @@
         <%= f.label :address, "登録住所から選択" %>
         <div class="ml-4">
           <%= f.select :address_id, options_from_collection_for_select(Address.all, :id, :address_display) %>
+
+          <!--ここに追記で表示させるアドレスを制限させる-->
         </div>
 
       <%= f.radio_button :address_option, 2 %>

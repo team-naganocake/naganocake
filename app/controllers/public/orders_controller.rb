@@ -43,6 +43,8 @@ class Public::OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
     @cart_items = current_customer.cart_items.all
+    #全会員の”登録済住所”が表示されていたため、追記で制限をかけてみた
+    #@addresses.customer_id = current_customer.id
     if @order.save
     #Q、saveとsave!の違い確認
       @cart_items.each do |cart_item|

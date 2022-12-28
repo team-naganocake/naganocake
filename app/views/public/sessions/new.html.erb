@@ -8,21 +8,21 @@
   </div>
 
 
-  <center>
-    <table>
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <tr>
-          <div class="field">
-            <th width="170"><%= f.label :email, "メールアドレス" %></th>
-            <td><%= f.email_field :email, autofocus: true, autocomplete: "email", size: "40" %></td>
-          </div>
-        </tr>
-        <tr>
-          <div class="field">
-            <th><%= f.label :password, "パスワード" %></th>
-            <td><%= f.password_field :password, autocomplete: "current-password", size: "40" %></td>
-          </div>
-        </tr>
+  <!--<center>-->
+  <!--  <table>-->
+  <!--    <%#= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>-->
+  <!--      <tr>-->
+  <!--        <div class="field">-->
+  <!--          <th width="170"><%#= f.label :email, "メールアドレス" %></th>-->
+  <!--          <td><%#= f.email_field :email, autofocus: true, autocomplete: "email", size: "40" %></td>-->
+  <!--        </div>-->
+  <!--      </tr>-->
+  <!--      <tr>-->
+  <!--        <div class="field">-->
+  <!--          <th><%#= f.label :password, "パスワード" %></th>-->
+  <!--          <td><%#= f.password_field :password, autocomplete: "current-password", size: "40" %></td>-->
+  <!--        </div>-->
+  <!--      </tr>-->
 
       <!--□remenber me ボタンは表示されていないので、ここではコメントアウト-->
         <%# if devise_mapping.rememberable? %>
@@ -31,17 +31,38 @@
           <!--  <%#= f.label :remember_me %>-->
           <!--</div>-->
         <%# end %>
-        <tr>
-          <th></th>
-          <td>
-            <div class="actions">
-              <%= f.submit "ログイン", class: "btn btn-primary mt-3 mb-5 w-50 btn-sm" %>
-            </div>
-          </td>
-        </tr>
+  <!--      <tr>-->
+  <!--        <th></th>-->
+  <!--        <td>-->
+  <!--          <div class="actions">-->
+  <!--            <%#= f.submit "ログイン", class: "btn btn-primary mt-3 mb-5 w-50 btn-sm" %>-->
+  <!--          </div>-->
+  <!--        </td>-->
+  <!--      </tr>-->
+  <!--    <%# end %>-->
+  <!--  </table>-->
+  <!--</center>-->
+
+    <div class="row mb-4">
+      <div class="col-2"></div>
+      <div class="col-10">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+          <div class="field">
+            <%= f.label :email, "メールアドレス", class: "w-120" %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          </div>
+          <div class="field">
+            <%= f.label :password, "パスワード", class: "w-120" %>
+            <%= f.password_field :password, autocomplete: "current-password" %>
+          </div>
+          <div class="actions">
+            <%= f.submit "ログイン", class: "btn btn-primary mt-3 mb-5 btn-sm" %>
+          </div>
       <% end %>
-    </table>
-  </center>
+      </div>
+    </div>
+
 
 
   <div class="row mb-4">

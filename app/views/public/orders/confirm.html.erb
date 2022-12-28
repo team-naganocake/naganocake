@@ -47,7 +47,7 @@
         </tr>
         <tr>
           <th bgcolor="#d3d3d3">請求金額</th>
-          <td><%= @order.shipping_cost + @total %></td>
+          <td><%= (@order.shipping_cost + @total).to_s(:delimited) %></td>
           <!--ここのhidden_fieldのtotal_paymentはただ名前をつけてるだけ。だから今回は定義してなくても大丈夫。もちろん定義は必要な場合もある。-->
         </tr>
       </div>

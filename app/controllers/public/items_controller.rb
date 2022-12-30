@@ -3,6 +3,7 @@ class Public::ItemsController < ApplicationController
   def index
     @items = Item.where(is_active: true).page(params[:page])
     #@items = Item.allに、販売中であるという制約とページネーションを追加
+    #1ページあたりの表示件数については、Itemモデルに記述した
     @genres = Genre.all
     if params[:genre_id].present?
       #presentメソッドでparams[:genre_id]に値が含まれているか確認 => trueの場合下記を実行
@@ -12,6 +13,8 @@ class Public::ItemsController < ApplicationController
     else
       @items = Item.where(is_active: true).page(params[:page])
       #@items = Item.allに、販売中であるという制約とページネーションを追加
+      #@items = Item.where(is_active: true).order('id DESC').limit(4)
+
     end
   end
 

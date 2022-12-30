@@ -16,7 +16,8 @@ class Admin::ItemsController < ApplicationController
   def index
     @items = Item.all
     @genres = Genre.all
-    @items = Item.page(params[:page])#ページネーション
+    @items = Item.page(params[:page]).per(10)
+    #ページネーションの設定.page(params[:page])と表示する件数の設定.per(10)
   end
 
   def show

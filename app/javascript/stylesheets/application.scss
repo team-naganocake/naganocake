@@ -1,15 +1,6 @@
 //Bootstrap導入のため記述
 @import '~bootstrap/scss/bootstrap';
 
-// table {
-//   border-spacing: 5px;
-// }
-//
-
-// .flex {
-//       display: flex;
-//     }
-
 
 // 顧客のログインのfieldの幅調整
 .w-120 {
@@ -29,3 +20,26 @@
   top: 5%;
   left: 20%;
 }
+
+.pagination {
+  display: flex;
+  text-align:center;
+  margin:0 auto;
+
+}
+
+// .pagination {
+//   justify-content: center;
+// }
+
+// .pagination {
+// 	display: flex;
+// 	justify-content: center;
+// 	align-items: center;
+// }
+
+// .search-box {
+//   display:flex;
+//   text-align:right;
+//   // justify-content:flex-end;
+// }

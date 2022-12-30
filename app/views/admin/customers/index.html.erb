@@ -43,15 +43,12 @@
           </tbody>
         </table>
       <!--ページネーション-->
-      <!--Q今ページネーション１Pの件数５にしている。１件にしたらちゃんと表示された。定数５の時表示されないのは問題ないか？何か解決策はあるのか？？-->
-      <%= paginate @customers %>
+      <div class="pagination">
+        <%= paginate @customers %>
+      </div>
     </div>
   </center>
 </div>
-
-<!--ページネーション-->
-<!--Q今ページネーション１Pの件数５にしている。１件にしたらちゃんと表示された。定数５の時表示されないのは問題ないか？何か解決策はあるのか？？-->
-<%#= paginate @customers %>
 
 
 <!--Bookers2のView/books.indexをレイアウトの参照！！！-->

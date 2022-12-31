@@ -18,15 +18,13 @@ ja:
     production_pending: "製作待ち"
     in_production: "製作中"
     production_complete: "製作完了"
-
-ja:
   views:
-    pagination:
-      first: "&laquo; First"
-      last: "Last &raquo;"
-      previous: "&lsaquo; Prev"
-      next: "Next &rsaquo;"
-      truncate: "..."
+   pagination:
+    first: "&laquo; <<First"
+    last: "Last>> &raquo;"
+    previous: "&lsaquo; <Prev"
+    next: "Next> &rsaquo;"
+    truncate: "..."
 
 #うまく日本語で表示されない時があった。
 #インデントを整える際に "Tabキー" を使用しているとうまく日本語で表示されないことがあるらしい

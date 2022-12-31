@@ -26,7 +26,10 @@
         <tr>
         　<th><%= genre.name %></th>
         　<td><%= link_to "編集する", edit_admin_genre_path(genre.id), class: "btn btn-success ml-5" %></td>
+          <%#= link_to "削除", admin_genre_path(genre.id), method: :delete %>
+          <!--消したいジャンルがあったため、臨時で作成してみた。要件にはないので削除-->
         </tr>
+
         <% end %>
       </tbody>
     </table>
@@ -34,5 +37,3 @@
 </div>
 
 
-<%#= link_to "削除", admin_genre_path(genre.id), method: :delete %>
-<!--消したいジャンルがあったため、臨時で作成してみた。要件にはないので削除-->

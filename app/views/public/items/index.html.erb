@@ -26,7 +26,6 @@
         </div>
       </div>
 
-
       <div class="row">
         <% @items.each do |item| %>
           <div class="col-lg-3 mt-1">
@@ -38,14 +37,14 @@
           </div>
         <% end %>
         <!--No-imageの場合については未設定-->
+      </div>
 
-        <!--<div class="pagination justify-content-center">-->
-        <div class="pagination">
-          <%= paginate @items %>
-          <!--1ページあたりの表示件数を8件にするために、モデルに「paginates_per 8」と記述し、制限をかけた-->
-          <!--コントローラーに@items = Item.page(params[:page]).per(10)みたいに、「.per(10)」の部分を書けば大丈夫-->
-        </div>
 
+      <div class="pagination">
+        <%= paginate @items %>
+        <!--1ページあたりの表示件数を8件にするために、モデルに「paginates_per 8」と記述し、制限をかけた-->
+        <!--コントローラーに@items = Item.page(params[:page]).per(10)みたいに、「.per(10)」の部分を書けば大丈夫-->
+        <!--rowの中にpaginationを入れたら横並びになるため、rowの外に出したら縦並びの中央表示になった。-->
       </div>
     </div>
 

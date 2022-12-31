@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row mb-1">
-    <div class="col-1"></div><div class="col-11 ml-3"><h4><span style="background-color:#d3d3d3;">新規会員登録（sign_up）</span></h4></div>
+    <div class="col-1"></div><div class="col-11 ml-3"><h4><span style="background-color:#d3d3d3;">新規会員登録</span></h4></div>
   </div>
 
   <table>
@@ -17,7 +17,7 @@
         <th width="220"><%= f.label :last_name, "名前（性）" %></th>
         <td>
           <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
-          <%= f.label :first_name, "（名）" %>
+          <strong><%= f.label :first_name, "（名）", class: "mr-3" %></strong>
           <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
         </td>
       </div>
@@ -27,7 +27,7 @@
         <th><%= f.label :last_name_kana, "フリガナ（セイ）" %></th>
         <td>
           <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name" %>
-          <%= f.label :first_name_kana, "（メイ）" %>
+          <strong><%= f.label :first_name_kana, "（メイ）" %></strong>
           <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name" %>
         </td>
       </div>

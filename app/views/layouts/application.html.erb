@@ -12,6 +12,8 @@
 　　stylesheet_pack_tagの場合は、app/javascript 配下のファイルを参照するようになります。-->
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!--<script src="https://kit.fontawesome.com/固有のコード.js" crossorigin="anonymous"></script>-->
+    <script src="https://kit.fontawesome.com/29e50a9fc0.js" crossorigin="anonymous"></script>
   </head>
 
   <!--ここから上はもとから記述があった部分-->
@@ -23,93 +25,119 @@
     <header>
       <nav class="fixed-top navbar navbar-expand-lg p-1 navbar-dark" style="background-color: #ffb6c1;">
     　  <div class="container">
-            <div class="col-6">
+          <div class="col-3">
             <%= link_to root_path do %>
               <%= image_tag('logo.jpg', size: "80x80") %>
             <% end %>
-            </div>
+          </div>
 
-          <!--<div class="row">-->
+          <div class="row">
             <% if admin_signed_in? %>
             <!--管理者がログインした時-->
+              <div class="col-4"></div>
+              <!--このcol-4を入れるとちょうどよくなるのか、右側の検索窓部分が2段になる-->
                 <ul class="navbar-nav ml-auto">
-                  <li class="nav-item ml-2">
+                  <li class="nav-item ml-4">
                     <%= link_to "商品一覧", admin_items_path, class: "btn btn-outline-danger btn-sm" %>
                   </li>
-                  <li class="nav-item ml-2">
+                  <li class="nav-item ml-4">
                     <%= link_to '会員一覧', admin_customers_path, class: "btn btn-outline-danger btn-sm" %>
                   </li>
-                  <li class="nav-item ml-2">
+                  <li class="nav-item ml-4">
                     <%= link_to "注文履歴一覧", admin_path, class: "btn btn-outline-danger btn-sm" %>
                   </li>
-                  <li class="nav-item ml-2">
+                  <li class="nav-item ml-4">
                     <%= link_to "ジャンル一覧", admin_genres_path, class: "btn btn-outline-danger btn-sm" %>
                   </li>
-                  <li class="nav-item ml-2">
+                  <li class="nav-item ml-4">
                     <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-danger btn-sm"  %>
                   </li>
+                </ul>
+                <ul class="ml-auto mb-1 mt-2">
+                <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+                  <form method="get" action="#" class="search_container">
+                    <input type="text" size="25" placeholder="　キーワード検索">
+                    <i class="fas fa-search">
+                        <input type="submit" value="&#xf002">
+                    </i>
+                  </form>
                 </ul>
 
               <% elsif customer_signed_in? %>
               <!--顧客がログインしている時-->
-              <div class="col-6" align="right">
+              <div class="col-4 mt-3" align="right">
                 ようこそ、<%= current_customer.last_name %>さん！
               </div>
 
-
               <!--mlはmargin-leftという意味。左に余白ができて、右寄せになる.Q適応されないなんで？-->
-              <ul class="navbar-nav ml-auto">
-                <li class="nav-item ml-2">
+              <ul class="navbar-nav ml-auto mt-2">
+                <li class="nav-item ml-4">
                   <%= link_to "マイページ", customers_my_page_path, class: "btn btn-outline-danger btn-sm" %>
                 </li>
-                <li class="nav-item ml-2">
+                <li class="nav-item ml-4">
                   <%= link_to '商品一覧', items_path, class: "btn btn-outline-danger btn-sm"  %>
                 </li>
-                <li class="nav-item ml-2">
+                <li class="nav-item ml-4">
                   <%= link_to "カート", cart_items_path, class: "btn btn-outline-danger btn-sm"  %>
                 </li>
-                <li class="nav-item ml-2">
+                <li class="nav-item ml-4">
                   <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "btn btn-outline-danger btn-sm"  %>
                 </li>
               </ul>
-              </div>
+              <ul class="ml-auto mb-1 mt-2">
+                <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+                  <form method="get" action="#" class="search_container">
+                    <input type="text" size="25" placeholder="　キーワード検索">
+                      <i class="fas fa-search">
+                        <input type="submit" value="&#xf002">
+                      </i>
+                  </form>
+              </ul>
+
               <% else %>
               <!--管理者・顧客がログインしていない時-->
-            <div class="row mb-4">
-              <ul class="navbar-nav ml-auto">
-                <li class="nav-item ml-2">
-                  <%= link_to "About", about_path, class: "btn btn-outline-danger btn-sm" %>
-                </li>
-                <li class="nav-item ml-2">
-                  <%= link_to '商品一覧', items_path, class: "btn btn-outline-danger btn-sm" %>
-                </li>
-                <li class="nav-item ml-2">
-                  <%= link_to "新規登録", new_customer_registration_path, class: "btn btn-outline-danger btn-sm" %>
-                </li>
-                <li class="nav-item ml-2">
-                  <%= link_to "ログイン", new_customer_session_path, class: "btn btn-outline-danger btn-sm" %>
-                </li>
-              </ul>
+              <div class="col-4"></div>
+              <!--このcol-4を入れるとちょうどよくなるのか、右側の検索窓部分が2段になる-->
+                <ul class="navbar-nav ml-auto">
+                  <li class="nav-item ml-4">
+                    <%= link_to "About", about_path, class: "btn btn-outline-danger btn-sm" %>
+                  </li>
+                  <li class="nav-item ml-4">
+                    <%= link_to '商品一覧', items_path, class: "btn btn-outline-danger btn-sm" %>
+                  </li>
+                  <li class="nav-item ml-4">
+                    <%= link_to "新規登録", new_customer_registration_path, class: "btn btn-outline-danger btn-sm" %>
+                  </li>
+                  <li class="nav-item ml-4">
+                    <%= link_to "ログイン", new_customer_session_path, class: "btn btn-outline-danger btn-sm" %>
+                  </li>
+                </ul>
+                <ul class="ml-auto mb-1 mt-2">
+                  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+                    <form method="get" action="#" class="search_container">
+                      <input type="text" size="25" placeholder="　キーワード検索">
+                        <i class="fas fa-search">
+                          <input type="submit" value="&#xf002">
+                        </i>
+                    </form>
+                </ul>
             </div>
-            <% end %>
-            
 
-            <div class="row mt-5">
-              <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-                <form method="get" action="#" class="search_container">
-                  <input type="text" size="25" placeholder="　キーワード検索">
-                  <input type="submit" value="&#xf002">
-                </form>
-              </header>
-            </div>
-
-          </nav>
-        </div>
-      </div>
-    <%= yield %>
+          </div>
+        <% end %>
+      </nav>
+    </header>
+  <%= yield %>
     <!--ここの意味あとで確認する。確かこれがないと情報を読み込まないとかなんとか-->
 
-
+            <!--<div class="row mt-5">-->
+            <!--  <ul>-->
+            <!--  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">-->
+            <!--    <form method="get" action="#" class="search_container">-->
+            <!--      <input type="text" size="25" placeholder="　キーワード検索">-->
+            <!--      <input type="submit" value="&#xf002">-->
+            <!--    </form>-->
+            <!--  </ul>-->
 
     <footer style="padding-top: 5rem">
     <!--フッターに文字が隠れないように余白の設定-->

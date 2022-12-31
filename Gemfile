@@ -67,3 +67,6 @@ gem 'kaminari','~> 1.2.1'
 
 #enum_helpを導入し数値と文字列を紐付けする
 gem "enum_help"
+
+#fontawesome導入のために記述＋bundle install
+gem "font-awesome-rails"

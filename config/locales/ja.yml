@@ -18,14 +18,16 @@ ja:
     production_pending: "製作待ち"
     in_production: "製作中"
     production_complete: "製作完了"
-  views:
-   pagination:
-    first: "&laquo; <<First"
-    last: "Last>> &raquo;"
-    previous: "&lsaquo; <Prev"
-    next: "Next> &rsaquo;"
-    truncate: "..."
+ views:
+  pagination:
+   first: "&laquo;First&nbsp;"
+   last: "&nbsp;Last&raquo;"
+   previous: "&lsaquo;Prev&nbsp;"
+   next: "&nbsp;Next&rsaquo;"
+   truncate: "..."
 
+#&nbsp;特殊文字でスペースの意味
+#&laquoこれらは特殊文字で>>の意味。通常入力すると大きな＞＞になる「>>」自体が特殊文字の認識
 #うまく日本語で表示されない時があった。
 #インデントを整える際に "Tabキー" を使用しているとうまく日本語で表示されないことがあるらしい
 #パターンです。インデントを整える際はTabキーでは無く、必ず 半角スペース を使用しましょう。

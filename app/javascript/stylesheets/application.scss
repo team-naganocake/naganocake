@@ -23,8 +23,18 @@
   left: 20%;
 }
 
+
+// .container {
+//   position: relative;
+// }
+
 .pagination {
   display: flex;
   text-align:center;
   margin:0 auto;
+  // position: absolute;
+  // bottom: 0%;
+  // left: 50%;
+  // position: relative, absoliteは親要素に対しての位置。だから親要素外にもっていくのは無理
+  // よってページネーションを下部固定する際、.containerに対してやってみたりしたが、それはうまくいかなかった。
 }

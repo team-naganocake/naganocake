@@ -43,8 +43,8 @@
       <div class="pagination">
         <%= paginate @items %>
         <!--1ページあたりの表示件数を8件にするために、モデルに「paginates_per 8」と記述し、制限をかけた-->
-        <!--コントローラーに@items = Item.page(params[:page]).per(10)みたいに、「.per(10)」の部分を書けば大丈夫-->
-        <!--rowの中にpaginationを入れたら横並びになるため、rowの外に出したら縦並びの中央表示になった。-->
+        <!--もしくはコントローラーに@items = Item.page(params[:page]).per(8)みたいに、「.per(8)」の部分を書けば大丈夫-->
+        <!--rowの中にpaginationを入れたら横並びになるため、rowの外に出したら（+cssで）縦並びの中央表示になった。-->
       </div>
     </div>
 
